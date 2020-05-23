@@ -4,15 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'src/pages/welcome_screen.dart';
 
 void main() {
-  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-  //   statusBarColor: Colors.white, //top bar color
-  //   statusBarIconBrightness: Brightness.dark, //top bar icons
-  //   systemNavigationBarColor: Colors.white, //bottom bar color
-  //   systemNavigationBarIconBrightness: Brightness.dark, //bottom bar icons
-  // ));
-  // SystemChrome.setPreferredOrientations(
-  //         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
-  //     .then((_) => );
   runApp(MyApp());
 }
 
