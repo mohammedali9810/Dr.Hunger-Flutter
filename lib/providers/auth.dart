@@ -33,7 +33,7 @@ class Auth with ChangeNotifier{
   Future<void> authenticate(String email,String password,String urlSegment) async{
     //TODO: urlSegment: sign up or log in ??.
     //ToDo: key = '' , from fireBase project in settings.
-    final url = 'https://identitytoolkit.googleapis.com/v1/accounts:$urlSegment?key=AIzaSyAWVmkPvVQ0bqHi0vV9QQs1EIctc68eqEo';
+    final url = 'https://identitytoolkit.googleapis.com/v1/accounts:$urlSegment?key=AIzaSyCMerisaFKA5_6D5_QHDWoyvzgpUczOn18';
     try{
       final response = await http.post(url,body:  json.encode({
         'email':email,
