@@ -1,54 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-<<<<<<< Updated upstream
-import 'src/pages/welcome_screen.dart';
-||||||| merged common ancestors
-=======
-// import 'screens/splash_screen.dart';
 import 'screens/auth_screen.dart.dart';
->>>>>>> Stashed changes
 
-void main() {
-  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-  //   statusBarColor: Colors.white, //top bar color
-  //   statusBarIconBrightness: Brightness.dark, //top bar icons
-  //   systemNavigationBarColor: Colors.white, //bottom bar color
-  //   systemNavigationBarIconBrightness: Brightness.dark, //bottom bar icons
-  // ));
-  // SystemChrome.setPreferredOrientations(
-  //         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
-  //     .then((_) => );
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return MaterialApp(
-<<<<<<< Updated upstream
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter ',
-        theme: ThemeData(
-            primarySwatch: Colors.blue,
-            primaryColor: Color(0xffe46b10),
-            textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
-              bodyText1: GoogleFonts.montserrat(textStyle: textTheme.bodyText1),
-            )),
-        home: WelcomePage());
-||||||| merged common ancestors
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter ',
-        theme: ThemeData(
-            primarySwatch: Colors.blue,
-            primaryColor: Color(0xffe46b10),
-            textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
-              bodyText1: GoogleFonts.montserrat(textStyle: textTheme.bodyText1),
-            )),
-        home: SplashScreen());
-=======
       debugShowCheckedModeBanner: false,
       title: 'Flutter ',
       theme: ThemeData(
@@ -60,6 +21,5 @@ class MyApp extends StatelessWidget {
       ),
       home: AuthScreen(),
     );
->>>>>>> Stashed changes
   }
 }

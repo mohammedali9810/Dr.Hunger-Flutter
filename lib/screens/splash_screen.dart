@@ -12,43 +12,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-<<<<<<< Updated upstream:lib/src/pages/splash_screen.dart
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _mockCheckforSession().then((status){
-  //     if (status){
-  //       _navigateToHomeScreen();
-  //     }
-  //     else()
-  //   });
-  // }
-  // Future<bool> _mockCheckforSession() async {
-  //   await Future.delayed(Duration(seconds: 3), () {});
-  //   return true;
-  // }
-
-  // void _navigateToSignningScreen() {
-  //   Navigator.of(context).pushReplacement(
-  //     MaterialPageRoute(builder: (context) => SiginingScreen()),
-  //   );
-  // }
-
-  // void _navigateToHomeScreen() {
-  //   Navigator.of(context).pushReplacement(
-  //     MaterialPageRoute(builder: (context) => HomeScreen()),
-  //   );
-  // }
-||||||| merged common ancestors:lib/screens/splash_screen.dart
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(Duration(seconds: 6)).then((value) => Navigator.push(context, MaterialPageRoute(builder:(context){
-      return LoginPage();
-    } )));
-  }
-=======
   @override
   void initState() {
     super.initState();
@@ -57,7 +20,6 @@ class _SplashScreenState extends State<SplashScreen> {
           return LoginPage();
         })));
   }
->>>>>>> Stashed changes:lib/screens/splash_screen.dart
 
   @override
   Widget build(BuildContext context) {
@@ -108,25 +70,9 @@ class _SplashScreenState extends State<SplashScreen> {
             SizedBox(
               height: 100,
             ),
-<<<<<<< Updated upstream:lib/src/pages/splash_screen.dart
-          ),
-          SizedBox(
-            height: 200,
-          ),
-          CircularProgressIndicator(),
-        ],
-||||||| merged common ancestors:lib/screens/splash_screen.dart
-          ),
-          SizedBox(
-            height: 100,
-          ),
-          CircularProgressIndicator(),
-        ],
-=======
             CircularProgressIndicator(),
           ],
         ),
->>>>>>> Stashed changes:lib/screens/splash_screen.dart
       ),
     );
   }

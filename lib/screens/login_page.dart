@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-<<<<<<< Updated upstream:lib/src/pages/login_page.dart
-import 'package:work_space/src/widgets/bezierContainer.dart';
-||||||| merged common ancestors:lib/screens/login_page.dart
-import 'file:///D:/Dr.Hunger-Flutter/lib/widgets/bezierContainer.dart';
-=======
->>>>>>> Stashed changes:lib/screens/login_page.dart
 
 import '../widgets/bezierContainer.dart';
 import 'signup_page.dart';

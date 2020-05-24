@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-<<<<<<< Updated upstream:lib/src/pages/welcome_screen.dart
-import 'package:work_space/src/pages/login_page.dart';
-||||||| merged common ancestors:lib/screens/welcome_screen.dart
-import 'file:///D:/Dr.Hunger-Flutter/lib/screens/login_page.dart';
-=======
->>>>>>> Stashed changes:lib/screens/welcome_screen.dart
 
 import 'login_page.dart';
 import 'signup_page.dart';
