@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+<<<<<<< Updated upstream
 import 'src/pages/welcome_screen.dart';
+||||||| merged common ancestors
+=======
+// import 'screens/splash_screen.dart';
+import 'screens/auth_screen.dart.dart';
+>>>>>>> Stashed changes
 
 void main() {
   // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -22,6 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return MaterialApp(
+<<<<<<< Updated upstream
         debugShowCheckedModeBanner: false,
         title: 'Flutter ',
         theme: ThemeData(
@@ -31,5 +38,28 @@ class MyApp extends StatelessWidget {
               bodyText1: GoogleFonts.montserrat(textStyle: textTheme.bodyText1),
             )),
         home: WelcomePage());
+||||||| merged common ancestors
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter ',
+        theme: ThemeData(
+            primarySwatch: Colors.blue,
+            primaryColor: Color(0xffe46b10),
+            textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
+              bodyText1: GoogleFonts.montserrat(textStyle: textTheme.bodyText1),
+            )),
+        home: SplashScreen());
+=======
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter ',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        primaryColor: Color(0xffe46b10),
+        textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
+          bodyText1: GoogleFonts.montserrat(textStyle: textTheme.bodyText1),
+        ),
+      ),
+      home: AuthScreen(),
+    );
+>>>>>>> Stashed changes
   }
 }

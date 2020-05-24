@@ -1,4 +1,17 @@
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream:lib/bmi_part/screens/results_page.dart
+||||||| merged common ancestors:lib/screens/bmi_screens/results_page.dart
+import 'package:work_space/widgets/bmi_components/bottom_button.dart';
+import 'package:work_space/widgets/bmi_components/reusable_card.dart';
+
+import '../../constants.dart';
+
+=======
+import '../../widgets/bmi_components.dart';
+
+import '../../constants.dart';
+
+>>>>>>> Stashed changes:lib/screens/bmi_screens/results_page.dart
 
 import '../components/bottom_button.dart';
 import '../components/reusable_card.dart';
