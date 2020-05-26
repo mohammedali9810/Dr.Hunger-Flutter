@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'login_page.dart';
-import 'signup_page.dart';
 
 class WelcomePage extends StatefulWidget {
   final String title;
@@ -13,11 +12,11 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-  Widget _submitButton() {
+  Widget _loginButton() {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginPage()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => LoginPage(isLogin: true)));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -52,7 +51,7 @@ class _WelcomePageState extends State<WelcomePage> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (BuildContext context) => SignUppage(),
+            builder: (BuildContext context) => LoginPage(),
           ),
         );
       },
@@ -102,35 +101,38 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(20),
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [Color(0xfffbb448), Color(0xffe46b10)])),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              _title(),
-              SizedBox(
-                height: 7,
-              ),
-              _extraTitle(),
-              SizedBox(
-                height: 80,
-              ),
-              _submitButton(),
-              SizedBox(
-                height: 20,
-              ),
-              _signUpButton(),
-              SizedBox(
-                height: 20,
-              ),
-            ],
+    return WillPopScope(
+      onWillPop: () => null,
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.all(20),
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [Color(0xfffbb448), Color(0xffe46b10)])),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                _title(),
+                SizedBox(
+                  height: 7,
+                ),
+                _extraTitle(),
+                SizedBox(
+                  height: 80,
+                ),
+                _loginButton(),
+                SizedBox(
+                  height: 20,
+                ),
+                _signUpButton(),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
           ),
         ),
       ),
