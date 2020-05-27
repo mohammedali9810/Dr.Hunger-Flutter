@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:work_space/screens/login_page.dart';
 
-// import 'dart:async';
-
 class SplashScreen extends StatefulWidget {
   SplashScreen({Key key}) : super(key: key);
 

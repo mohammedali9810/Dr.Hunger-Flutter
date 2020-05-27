@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import '../models/http_exception.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth.dart';
+import './bmi_screens/input_page.dart';
+import '../widgets/auth-widgets/facebook-button.dart';
+import '../widgets/auth-widgets/google-button.dart';
 
 enum AuthMode { Signup, Login }
 
@@ -62,10 +65,10 @@ class AuthScreen extends StatelessWidget {
                         ],
                       ),
                       child: Text(
-                        'MyShop',
+                        'DR Hunger',
                         style: TextStyle(
                           color: Theme.of(context).accentTextTheme.title.color,
-                          fontSize: 35,
+                          fontSize: 20,
                           fontFamily: 'Anton',
                           fontWeight: FontWeight.normal,
                         ),
@@ -76,6 +79,9 @@ class AuthScreen extends StatelessWidget {
                     flex: deviceSize.width > 600 ? 2 : 1,
                     child: AuthCard(),
                   ),
+                  SizedBox(height: 10,),
+                  FaceBookButton(),
+                  GoogleButton(),
                 ],
               ),
             ),
@@ -84,6 +90,7 @@ class AuthScreen extends StatelessWidget {
       ),
     );
   }
+
 }
 
 class AuthCard extends StatefulWidget {
@@ -135,6 +142,7 @@ class _AuthCardState extends State<AuthCard> {
        if (_authMode == AuthMode.Login) {
          // Log user in
          await Provider.of<Auth>(context,listen: false).signin(_authData['email'], _authData['password']);
+         Navigator.push(context, MaterialPageRoute(builder: (context) => InputPage()));
        } else {
          // Sign user up
          await Provider.of<Auth>(context,listen: false).signup(_authData['email'], _authData['password']);

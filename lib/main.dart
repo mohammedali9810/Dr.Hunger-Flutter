@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:work_space/screens/bmi_screens/input_page.dart';
-import 'package:work_space/screens/splash_screen.dart';
+import 'package:provider/provider.dart';
 
+import 'package:work_space/providers/auth.dart';
+import 'package:work_space/providers/meal_provider.dart';
+import 'package:work_space/providers/meals_provider.dart';
+import 'package:work_space/screens/meal_screens/meal_detail_screen.dart';
+import 'package:work_space/screens/meal_screens/meal_overrview.dart';
+import 'package:work_space/screens/splash_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +17,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    return MaterialApp(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: Auth()),
+        ChangeNotifierProvider.value(value: Meals()),
+      ],
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter ',
         theme: ThemeData(
@@ -21,6 +31,8 @@ class MyApp extends StatelessWidget {
             textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
               bodyText1: GoogleFonts.montserrat(textStyle: textTheme.bodyText1),
             )),
-        home: SplashScreen());
+        home: MealOverView(),
+      ),
+    );
   }
 }

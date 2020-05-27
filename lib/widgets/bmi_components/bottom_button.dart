@@ -14,7 +14,7 @@ class BottomButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: BorderRadius.all(Radius.circular(0)),
             gradient:
                 LinearGradient(colors: [Color(0xfffbb448), Color(0xffe46b10)])),
         child: Center(
@@ -23,9 +23,8 @@ class BottomButton extends StatelessWidget {
             style: kLargeButtonTextStyle,
           ),
         ),
-        // color: kBottomContainerColour,
         margin: EdgeInsets.only(top: 10.0),
-        padding: EdgeInsets.only(bottom: 20.0),
+        //padding: EdgeInsets.only(bottom: 20.0),
         width: double.infinity,
         height: kBottomContainerHeight,
       ),

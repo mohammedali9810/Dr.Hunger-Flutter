@@ -28,13 +28,14 @@ class _InputPageState extends State<InputPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF213A50),
       appBar: AppBar(
         title: Text(
           // ' Few 🧐 to 💪 ',
           'How is your physique?',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFF213A50),
         elevation: 0.5,
       ),
       body: Column(

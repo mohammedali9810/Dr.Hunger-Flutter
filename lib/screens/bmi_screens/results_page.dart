@@ -3,6 +3,7 @@ import 'package:work_space/widgets/bmi_components/bottom_button.dart';
 import 'package:work_space/widgets/bmi_components/reusable_card.dart';
 
 import '../../constants.dart';
+import '../diet_screens/diet_generator_screen.dart';
 
 
 
@@ -43,7 +44,7 @@ class ResultsPage extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(15.0),
+              padding: EdgeInsets.all(8.0),
               alignment: Alignment.bottomLeft,
               child: Text(
                 'Your Result',
@@ -79,7 +80,7 @@ class ResultsPage extends StatelessWidget {
           BottomButton(
             buttonTitle: 'get Started 🙌',
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => DietGeneratorScreen()));
             },
           )
         ],
