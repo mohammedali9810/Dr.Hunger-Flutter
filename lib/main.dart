@@ -3,11 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'providers/auth.dart';
-import 'providers/meal_provider.dart';
 import 'providers/meals_provider.dart';
-import 'screens/meal_screens/meal_detail_screen.dart';
-import 'screens/meal_screens/meal_overrview.dart';
-import 'screens/splash_screen.dart';
+import 'screens/meal_screens/meal_overview.dart';
 
 void main() => runApp(MyApp());
 

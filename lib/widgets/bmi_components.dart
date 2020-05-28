@@ -14,18 +14,20 @@ class BottomButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
-            gradient:
-                LinearGradient(colors: [Color(0xfffbb448), Color(0xffe46b10)])),
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+          gradient: LinearGradient(
+            colors: [
+              Color(0xfffbb448),
+              Color(0xffe46b10),
+            ],
+          ),
+        ),
         child: Center(
           child: Text(
             buttonTitle,
             style: kLargeButtonTextStyle,
           ),
         ),
-        // color: kBottomContainerColour,
-        margin: EdgeInsets.only(top: 10.0),
-        padding: EdgeInsets.only(bottom: 20.0),
         width: double.infinity,
         height: kBottomContainerHeight,
       ),
@@ -54,7 +56,7 @@ class IconContent extends StatelessWidget {
         Text(
           label,
           style: kLabelTextStyle,
-        )
+        ),
       ],
     );
   }
@@ -92,14 +94,15 @@ class RoundIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
-        elevation: 0.0,
-        child: Icon(icon),
-        onPressed: onPressed,
-        constraints: BoxConstraints.tightFor(
-          width: 56.0,
-          height: 56.0,
-        ),
-        shape: CircleBorder(),
-        fillColor: Colors.grey.withAlpha(50));
+      elevation: 0.0,
+      child: Icon(icon),
+      onPressed: onPressed,
+      constraints: BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      shape: CircleBorder(),
+      fillColor: Colors.grey.withAlpha(50),
+    );
   }
 }

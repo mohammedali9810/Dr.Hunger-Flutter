@@ -24,9 +24,9 @@ class FoodTypeCard extends StatelessWidget {
               top: 10.0,
               child: isSelected
                   ? Icon(
-                Icons.check_circle_outline,
-                color: Colors.black.withOpacity(0.2),
-              )
+                      Icons.check_circle_outline,
+                      color: Colors.black.withOpacity(0.2),
+                    )
                   : SizedBox.shrink(),
             ),
             Center(
@@ -42,7 +42,7 @@ class FoodTypeCard extends StatelessWidget {
                     title,
                     style: TextStyle(
                       color:
-                      isSelected ? Colors.blueGrey[800] : Colors.grey[500],
+                          isSelected ? Colors.blueGrey[800] : Colors.grey[500],
                       fontSize: 17.0,
                       fontWeight: FontWeight.bold,
                     ),

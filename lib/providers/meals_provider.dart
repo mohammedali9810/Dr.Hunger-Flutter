@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:work_space/providers/meal_provider.dart';
+
+import 'meal_provider.dart';
 
 class Meals with ChangeNotifier{
 

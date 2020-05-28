@@ -43,13 +43,7 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
-                    onPress: () {
-                      setState(
-                        () {
-                          selectedGender = Gender.male;
-                        },
-                      );
-                    },
+                    onPress: () => setState(() => selectedGender = Gender.male),
                     colour: selectedGender == Gender.male
                         ? kActiveCardColour
                         : kInactiveCardColour,
@@ -61,13 +55,8 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    onPress: () {
-                      setState(
-                        () {
-                          selectedGender = Gender.female;
-                        },
-                      );
-                    },
+                    onPress: () =>
+                        setState(() => selectedGender = Gender.female),
                     colour: selectedGender == Gender.female
                         ? kActiveCardColour
                         : kInactiveCardColour,
@@ -121,7 +110,7 @@ class _InputPageState extends State<InputPage> {
                         value: height.toDouble(),
                         min: 120.0,
                         max: 220.0,
-                        onChanged: (double newValue) => 
+                        onChanged: (double newValue) =>
                             setState(() => height = newValue.round()),
                       ),
                     ),
@@ -152,14 +141,14 @@ class _InputPageState extends State<InputPage> {
                           children: <Widget>[
                             RoundIconButton(
                               icon: FontAwesomeIcons.minus,
-                              onPressed: () => setState(() => weight--),                             
+                              onPressed: () => setState(() => weight--),
                             ),
                             SizedBox(
                               width: 10.0,
                             ),
                             RoundIconButton(
                               icon: FontAwesomeIcons.plus,
-                              onPressed: () => setState(() => weight++), 
+                              onPressed: () => setState(() => weight++),
                             ),
                           ],
                         ),
@@ -186,26 +175,14 @@ class _InputPageState extends State<InputPage> {
                           children: <Widget>[
                             RoundIconButton(
                               icon: FontAwesomeIcons.minus,
-                              onPressed: () {
-                                setState(
-                                  () {
-                                    age--;
-                                  },
-                                );
-                              },
+                              onPressed: () => setState(() => age--),
                             ),
                             SizedBox(
                               width: 10.0,
                             ),
                             RoundIconButton(
                               icon: FontAwesomeIcons.plus,
-                              onPressed: () {
-                                setState(
-                                  () {
-                                    age++;
-                                  },
-                                );
-                              },
+                              onPressed: () => setState(() => age++),
                             ),
                           ],
                         ),
@@ -221,15 +198,14 @@ class _InputPageState extends State<InputPage> {
             onTap: () {
               CalculatorBrain calc =
                   CalculatorBrain(height: height, weight: weight);
-
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ResultsPage(
-                      bmiResult: calc.calculateBMI(),
-                      resultText: calc.getResult(),
-                      interpretation: calc.getInterpretation(),
-                      color: calc.getColor(),
+                    bmiResult: calc.calculateBMI(),
+                    resultText: calc.getResult(),
+                    interpretation: calc.getInterpretation(),
+                    color: calc.getColor(),
                   ),
                 ),
               );

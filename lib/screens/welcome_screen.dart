@@ -14,10 +14,8 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   Widget _loginButton() {
     return InkWell(
-      onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => LoginPage(isLogin: true)));
-      },
+      onTap: () => Navigator.push(context,
+          MaterialPageRoute(builder: (context) => LoginPage(isLogin: true))),
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 18),
@@ -47,25 +45,29 @@ class _WelcomePageState extends State<WelcomePage> {
 
   Widget _signUpButton() {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => LoginPage(),
-          ),
-        );
-      },
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => LoginPage(),
+        ),
+      ),
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 13),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
-          border: Border.all(color: Colors.white, width: 2),
+          border: Border.all(
+            color: Colors.white,
+            width: 2,
+          ),
         ),
         child: Text(
           'Register now',
-          style: TextStyle(color: Colors.white, fontSize: 20),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+          ),
         ),
       ),
     );
@@ -85,7 +87,10 @@ class _WelcomePageState extends State<WelcomePage> {
         children: [
           TextSpan(
             text: "Hunger",
-            style: TextStyle(color: Colors.white, fontSize: 30),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 30,
+            ),
           )
         ],
       ),
@@ -109,8 +114,13 @@ class _WelcomePageState extends State<WelcomePage> {
             padding: EdgeInsets.all(20),
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [Color(0xfffbb448), Color(0xffe46b10)])),
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xfffbb448),
+                  Color(0xffe46b10),
+                ],
+              ),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
