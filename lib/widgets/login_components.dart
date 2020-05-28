@@ -1,6 +1,12 @@
+import 'package:DrHunger/providers/auth.dart';
 import 'package:DrHunger/screens/bmi_screens/input_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+String email;
+String password;
+String name;
 
 Widget backButton(BuildContext context) {
   return InkWell(
@@ -32,7 +38,10 @@ Widget title(BuildContext context) {
     text: TextSpan(
       text: "Dr.",
       style: GoogleFonts.portLligatSans(
-        textStyle: Theme.of(context).textTheme.headline4,
+        textStyle: Theme
+            .of(context)
+            .textTheme
+            .headline4,
         fontSize: 30,
         color: Color(0xffe46b10),
         fontWeight: FontWeight.w700,
@@ -41,7 +50,10 @@ Widget title(BuildContext context) {
         TextSpan(
           text: "Hunger",
           style: GoogleFonts.portLligatSans(
-            textStyle: Theme.of(context).textTheme.headline4,
+            textStyle: Theme
+                .of(context)
+                .textTheme
+                .headline4,
             fontSize: 30,
             color: Colors.black,
             fontWeight: FontWeight.w700,
@@ -52,11 +64,11 @@ Widget title(BuildContext context) {
   );
 }
 
-Widget entryField(
-    {@required String title,
-    String hintText,
-    Icon icon,
-    bool isPassword = false}) {
+Widget entryField({@required String title,
+  String hintText,
+  Icon icon,
+  bool isPassword = false,
+  @required Function saveValue}) {
   return Container(
     margin: EdgeInsets.symmetric(
       vertical: 3,
@@ -71,6 +83,7 @@ Widget entryField(
         Opacity(
           opacity: 0.75,
           child: TextField(
+            onChanged: saveValue,
             obscureText: isPassword,
             decoration: InputDecoration(
               hintText: hintText,
@@ -87,12 +100,28 @@ Widget entryField(
 }
 
 Widget submitButton(BuildContext context, bool isLogin) {
+
+  Future <void> saveLogData()async {
+    final auth =  Provider.of<Auth>(context,listen: false);
+    if (isLogin){
+      await auth.signin(email, password);
+    }
+    else{
+      await auth.signup(email, password);
+    }
+  }
+
   return InkWell(
-    onTap: () {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => InputPage()));
+    onTap: () async {
+      await saveLogData();
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => InputPage()));
     },
     child: Container(
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width,
       padding: EdgeInsets.symmetric(vertical: 15),
       alignment: Alignment.center,
       decoration: BoxDecoration(
@@ -129,19 +158,25 @@ Widget emailPasswordWidget(bool isLogin) {
     children: <Widget>[
       if (!isLogin)
         entryField(
-            title: "Username",
-            icon: Icon(Icons.person_outline),
-            hintText: "Please enter your name"),
+          title: "Username",
+          icon: Icon(Icons.person_outline),
+          hintText: "Please enter your name",
+          saveValue: (value) => name = value,
+        ),
       entryField(
-        title: "Email",
-        hintText: "Please enter your E-mail",
-        icon: Icon(Icons.email),
+          title: "Email",
+          hintText: "Please enter your E-mail",
+          icon: Icon(
+            Icons.email,
+          ),
+          saveValue: (value) => email = value
       ),
       entryField(
         title: "Password",
         isPassword: true,
         hintText: "Please enter your password",
         icon: Icon(Icons.security),
+        saveValue: (value) => password = value
       ),
     ],
   );
