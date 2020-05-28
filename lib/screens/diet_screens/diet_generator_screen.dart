@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:work_space/screens/meal_screens/meal_overrview.dart';
 
-import 'package:work_space/widgets/food-type.dart';
+import 'screens/meal_screens/meal_overrview.dart';
+import 'widgets/food-type.dart';
 
 class DietGeneratorScreen extends StatefulWidget {
   DietGeneratorScreen({Key key}) : super(key: key);
@@ -13,10 +13,8 @@ class DietGeneratorScreen extends StatefulWidget {
 class _DietGeneratorScreenState extends State<DietGeneratorScreen> {
   List<String> meals = ['1 meal', '2 meals', '3 meals', '4 meals'];
   List<String> diseases = ['indigestion', 'diabetes', 'hypertension','heart disease'];
-
   String selectedDisease = 'indigestion';
   String selectedMealNumber = '4 meals';
-
   bool _isAnythingSelected = false;
   bool _isvegSelected = false;
   bool _isMedSelected = false;
@@ -40,7 +38,7 @@ class _DietGeneratorScreenState extends State<DietGeneratorScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    'Have any perfered?',
+                    'What type of food do you prefer?',
                     style: TextStyle(
                       color: Colors.blueGrey[800],
                       fontSize: 25.0,
@@ -187,7 +185,9 @@ class _DietGeneratorScreenState extends State<DietGeneratorScreen> {
                       Text('I Suffer Form', style: TextStyle(
                         color: Colors.blueGrey[800],
                         fontSize: 19.0,
-                        fontWeight: FontWeight.w600,)),
+                        fontWeight: FontWeight.w600,
+                          ),
+                      ),
                       SizedBox(height: 10,),
                       Container(
                         decoration: BoxDecoration(
@@ -208,11 +208,7 @@ class _DietGeneratorScreenState extends State<DietGeneratorScreen> {
                               fontWeight: FontWeight.bold,
                               fontSize: 15.0,
                             ),
-                            onChanged: (value) {
-                              setState(() {
-                                selectedDisease = value;
-                              });
-                            },
+                            onChanged: (value) => setState(() => selectedDisease = value),
                             items: diseases.map((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
@@ -248,7 +244,7 @@ class _DietGeneratorScreenState extends State<DietGeneratorScreen> {
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
-                ),
+                ),    
               ),
             ),
           ),
@@ -257,49 +253,3 @@ class _DietGeneratorScreenState extends State<DietGeneratorScreen> {
     );
   }
 }
-
-
-//      appBar: AppBar(
-//        brightness: Brightness.light,
-//        elevation: 0.0,
-//        backgroundColor: Colors.white,
-//        automaticallyImplyLeading: false,
-//        title: Row(
-//          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//          children: <Widget>[
-//            Padding(
-//              padding: EdgeInsets.symmetric(horizontal: 8.0),
-//              child: Row(
-//                children: <Widget>[
-//                  CircleAvatar(
-//                    radius: 22.0,
-//                    backgroundColor: Colors.transparent,
-//                    backgroundImage: AssetImage(
-//                      'assets/images/profile.png',
-//                    ),
-//                  ),
-//                  SizedBox(
-//                    width: 5.0,
-//                  ),
-//                  Text(
-//                    'Hi Samaka !',
-//                    style: TextStyle(
-//                      color: Colors.blueGrey[800],
-//                      fontSize: 21.0,
-//                      fontWeight: FontWeight.bold,
-//                    ),
-//                  ),
-//                ],
-//              ),
-//            ),
-//            IconButton(
-//              onPressed: () {},
-//              icon: Icon(
-//                Icons.search,
-//                color: Colors.blueGrey[800],
-//                size: 25.0,
-//              ),
-//            )
-//          ],
-//        ),
-//      ),

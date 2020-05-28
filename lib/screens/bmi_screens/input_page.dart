@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:work_space/models/bmi_models/calculator_brain.dart';
-import 'package:work_space/widgets/bmi_components/bottom_button.dart';
-import 'package:work_space/widgets/bmi_components/icon_content.dart';
-import 'package:work_space/widgets/bmi_components/reusable_card.dart';
-import 'package:work_space/widgets/bmi_components/round_icon_button.dart';
 
+import '../../models/bmi_models/calculator_brain.dart';
+import '../../widgets/bmi_components.dart';
 import '../../constants.dart';
 import 'results_page.dart';
 
@@ -42,42 +39,47 @@ class _InputPageState extends State<InputPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
-              child: Row(
-            children: <Widget>[
-              Expanded(
-                child: ReusableCard(
-                  onPress: () {
-                    setState(() {
-                      selectedGender = Gender.male;
-                    });
-                  },
-                  colour: selectedGender == Gender.male
-                      ? kActiveCardColour
-                      : kInactiveCardColour,
-                  cardChild: IconContent(
-                    icon: FontAwesomeIcons.mars,
-                    label: 'MALE',
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: ReusableCard(
+                    onPress: () {
+                      setState(
+                        () {
+                          selectedGender = Gender.male;
+                        },
+                      );
+                    },
+                    colour: selectedGender == Gender.male
+                        ? kActiveCardColour
+                        : kInactiveCardColour,
+                    cardChild: IconContent(
+                      icon: FontAwesomeIcons.mars,
+                      label: 'MALE',
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: ReusableCard(
-                  onPress: () {
-                    setState(() {
-                      selectedGender = Gender.female;
-                    });
-                  },
-                  colour: selectedGender == Gender.female
-                      ? kActiveCardColour
-                      : kInactiveCardColour,
-                  cardChild: IconContent(
-                    icon: FontAwesomeIcons.venus,
-                    label: 'FEMALE',
+                Expanded(
+                  child: ReusableCard(
+                    onPress: () {
+                      setState(
+                        () {
+                          selectedGender = Gender.female;
+                        },
+                      );
+                    },
+                    colour: selectedGender == Gender.female
+                        ? kActiveCardColour
+                        : kInactiveCardColour,
+                    cardChild: IconContent(
+                      icon: FontAwesomeIcons.venus,
+                      label: 'FEMALE',
+                    ),
                   ),
                 ),
-              ),
-            ],
-          )),
+              ],
+            ),
+          ),
           Expanded(
             child: ReusableCard(
               colour: kActiveCardColour,
@@ -100,7 +102,7 @@ class _InputPageState extends State<InputPage> {
                       Text(
                         'cm',
                         style: kLabelTextStyle,
-                      )
+                      ),
                     ],
                   ),
                   SliderTheme(
@@ -119,11 +121,8 @@ class _InputPageState extends State<InputPage> {
                         value: height.toDouble(),
                         min: 120.0,
                         max: 220.0,
-                        onChanged: (double newValue) {
-                          setState(() {
-                            height = newValue.round();
-                          });
-                        },
+                        onChanged: (double newValue) => 
+                            setState(() => height = newValue.round()),
                       ),
                     ),
                   ),
@@ -152,22 +151,15 @@ class _InputPageState extends State<InputPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             RoundIconButton(
-                                icon: FontAwesomeIcons.minus,
-                                onPressed: () {
-                                  setState(() {
-                                    weight--;
-                                  });
-                                }),
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () => setState(() => weight--),                             
+                            ),
                             SizedBox(
                               width: 10.0,
                             ),
                             RoundIconButton(
                               icon: FontAwesomeIcons.plus,
-                              onPressed: () {
-                                setState(() {
-                                  weight++;
-                                });
-                              },
+                              onPressed: () => setState(() => weight++), 
                             ),
                           ],
                         ),
@@ -206,14 +198,17 @@ class _InputPageState extends State<InputPage> {
                               width: 10.0,
                             ),
                             RoundIconButton(
-                                icon: FontAwesomeIcons.plus,
-                                onPressed: () {
-                                  setState(() {
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(
+                                  () {
                                     age++;
-                                  });
-                                })
+                                  },
+                                );
+                              },
+                            ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -231,10 +226,10 @@ class _InputPageState extends State<InputPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => ResultsPage(
-                    bmiResult: calc.calculateBMI(),
-                    resultText: calc.getResult(),
-                    interpretation: calc.getInterpretation(),
-                    color: calc.getColor()
+                      bmiResult: calc.calculateBMI(),
+                      resultText: calc.getResult(),
+                      interpretation: calc.getInterpretation(),
+                      color: calc.getColor(),
                   ),
                 ),
               );

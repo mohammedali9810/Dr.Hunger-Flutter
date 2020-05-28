@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'package:work_space/providers/auth.dart';
-import 'package:work_space/providers/meal_provider.dart';
-import 'package:work_space/providers/meals_provider.dart';
-import 'package:work_space/screens/meal_screens/meal_detail_screen.dart';
-import 'package:work_space/screens/meal_screens/meal_overrview.dart';
-import 'package:work_space/screens/splash_screen.dart';
+import 'providers/auth.dart';
+import 'providers/meal_provider.dart';
+import 'providers/meals_provider.dart';
+import 'screens/meal_screens/meal_detail_screen.dart';
+import 'screens/meal_screens/meal_overrview.dart';
+import 'screens/splash_screen.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
@@ -30,7 +28,8 @@ class MyApp extends StatelessWidget {
             primaryColor: Color(0xffe46b10),
             textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
               bodyText1: GoogleFonts.montserrat(textStyle: textTheme.bodyText1),
-            )),
+            ),
+        ),
         home: MealOverView(),
       ),
     );

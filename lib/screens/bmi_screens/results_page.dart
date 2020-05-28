@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:work_space/widgets/bmi_components/bottom_button.dart';
-import 'package:work_space/widgets/bmi_components/reusable_card.dart';
 
 import '../../constants.dart';
 import '../diet_screens/diet_generator_screen.dart';
-
-
+import '../../widgets/bmi_components.dart';
 
 class ResultsPage extends StatelessWidget {
   ResultsPage(
