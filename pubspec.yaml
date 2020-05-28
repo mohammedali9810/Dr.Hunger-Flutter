@@ -69,6 +69,9 @@ flutter:
         - asset: assets/fonts/Pacifico-Regular.ttf
   # #       - asset: fonts/Schyler-Italic.ttf
   # #         style: italic
+    - family: Pacifico
+      fonts:
+            - asset: assets/fonts/Pacifico-Regular.ttf
 
   #   - family: SF Pro Display
   #     fonts:

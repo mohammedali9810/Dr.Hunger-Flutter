@@ -25,13 +25,14 @@ class _InputPageState extends State<InputPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF213A50),
       appBar: AppBar(
         title: Text(
           // ' Few 🧐 to 💪 ',
           'How is your physique?',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFF213A50),
         elevation: 0.5,
       ),
       body: Column(
@@ -120,13 +121,8 @@ class _InputPageState extends State<InputPage> {
                         value: height.toDouble(),
                         min: 120.0,
                         max: 220.0,
-                        onChanged: (double newValue) {
-                          setState(
-                            () {
-                              height = newValue.round();
-                            },
-                          );
-                        },
+                        onChanged: (double newValue) => 
+                            setState(() => height = newValue.round()),
                       ),
                     ),
                   ),
@@ -156,26 +152,14 @@ class _InputPageState extends State<InputPage> {
                           children: <Widget>[
                             RoundIconButton(
                               icon: FontAwesomeIcons.minus,
-                              onPressed: () {
-                                setState(
-                                  () {
-                                    weight--;
-                                  },
-                                );
-                              },
+                              onPressed: () => setState(() => weight--),                             
                             ),
                             SizedBox(
                               width: 10.0,
                             ),
                             RoundIconButton(
                               icon: FontAwesomeIcons.plus,
-                              onPressed: () {
-                                setState(
-                                  () {
-                                    weight++;
-                                  },
-                                );
-                              },
+                              onPressed: () => setState(() => weight++), 
                             ),
                           ],
                         ),
@@ -245,7 +229,8 @@ class _InputPageState extends State<InputPage> {
                       bmiResult: calc.calculateBMI(),
                       resultText: calc.getResult(),
                       interpretation: calc.getInterpretation(),
-                      color: calc.getColor()),
+                      color: calc.getColor(),
+                  ),
                 ),
               );
             },
