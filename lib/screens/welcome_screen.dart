@@ -12,6 +12,52 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () => null,
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.all(20),
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xffeaa448),
+                  Color(0xffe46b10),
+                  Color(0xffdd4400),
+                ],
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                _title(),
+                SizedBox(
+                  height: 7,
+                ),
+                _extraTitle(),
+                SizedBox(
+                  height: 80,
+                ),
+                _loginButton(),
+                SizedBox(
+                  height: 20,
+                ),
+                _signUpButton(),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _loginButton() {
     return InkWell(
       onTap: () => Navigator.push(context,
@@ -29,7 +75,7 @@ class _WelcomePageState extends State<WelcomePage> {
               offset: Offset(2, 4),
               blurRadius: 8,
               spreadRadius: 2,
-            )
+            ),
           ],
         ),
         child: Text(
@@ -91,7 +137,7 @@ class _WelcomePageState extends State<WelcomePage> {
               color: Colors.white,
               fontSize: 30,
             ),
-          )
+          ),
         ],
       ),
     );
@@ -100,51 +146,9 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget _extraTitle() {
     return Text(
       "AI Meal & recipe Planner",
-      style: TextStyle(color: Colors.white, fontSize: 18),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () => null,
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.all(20),
-            height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xfffbb448),
-                  Color(0xffe46b10),
-                ],
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                _title(),
-                SizedBox(
-                  height: 7,
-                ),
-                _extraTitle(),
-                SizedBox(
-                  height: 80,
-                ),
-                _loginButton(),
-                SizedBox(
-                  height: 20,
-                ),
-                _signUpButton(),
-                SizedBox(
-                  height: 20,
-                ),
-              ],
-            ),
-          ),
-        ),
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 18,
       ),
     );
   }

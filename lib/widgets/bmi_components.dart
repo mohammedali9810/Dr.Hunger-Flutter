@@ -17,8 +17,9 @@ class BottomButton extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(5)),
           gradient: LinearGradient(
             colors: [
-              Color(0xfffbb448),
+              Color(0xffeaa448),
               Color(0xffe46b10),
+              Color(0xffdd4400),
             ],
           ),
         ),
@@ -63,11 +64,12 @@ class IconContent extends StatelessWidget {
 }
 
 class ReusableCard extends StatelessWidget {
-  ReusableCard({@required this.colour, this.cardChild, this.onPress});
+  ReusableCard({@required this.colour, this.cardChild, this.onPress, this.transparentBorder = false});
 
   final Color colour;
   final Widget cardChild;
   final Function onPress;
+  final bool transparentBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +79,10 @@ class ReusableCard extends StatelessWidget {
         child: cardChild,
         margin: EdgeInsets.all(15.0),
         decoration: BoxDecoration(
-          border: Border.all(color: Color(0xffe46b10),width: 1),
+          border: Border.all(
+            color: transparentBorder ? Colors.transparent : Color(0xffe46b10),
+            width: 1,
+          ),
           color: colour,
           borderRadius: BorderRadius.circular(10.0),
         ),

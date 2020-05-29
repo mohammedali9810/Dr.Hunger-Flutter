@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 import '../../constants.dart';
 import '../diet_screens/diet_generator_screen.dart';
@@ -19,7 +20,14 @@ class ResultsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: GradientAppBar(
+        gradient: LinearGradient(
+          colors: [
+            Color(0xffeaa448),
+            Color(0xffe46b10),
+            Color(0xffdd4400),
+          ],
+        ),
         iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: false,
         title: FlatButton(
@@ -36,11 +44,11 @@ class ResultsPage extends StatelessWidget {
       ),
       body: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
           gradient: LinearGradient(
             colors: [
-              Color(0xfffbb448),
+              Color(0xffeaa448),
               Color(0xffe46b10),
+              Color(0xffdd4400),
             ],
           ),
         ),
@@ -63,14 +71,24 @@ class ResultsPage extends StatelessWidget {
             Expanded(
               flex: 5,
               child: ReusableCard(
+                transparentBorder: true,
                 colour: Colors.transparent,
                 cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                      resultText.toUpperCase(),
-                      style: kResultTextStyle.apply(color: color,),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.black45,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 7),
+                      child: Text(
+                        resultText.toUpperCase(),
+                        style: kResultTextStyle.apply(
+                          color: color,
+                        ),
+                      ),
                     ),
                     Text(
                       bmiResult,
