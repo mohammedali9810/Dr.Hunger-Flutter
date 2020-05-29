@@ -15,7 +15,7 @@ class MealDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xffe46b10),
+        //backgroundColor: Color(0xffe46b10),
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -53,7 +53,7 @@ class MealDetailScreen extends StatelessWidget {
               Text(
                 description,
                 style: TextStyle(
-                  color: Colors.white70,
+                  color: Color(0xffe46b10),
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Pacifico',

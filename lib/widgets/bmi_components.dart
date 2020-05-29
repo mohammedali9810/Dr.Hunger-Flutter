@@ -77,6 +77,7 @@ class ReusableCard extends StatelessWidget {
         child: cardChild,
         margin: EdgeInsets.all(15.0),
         decoration: BoxDecoration(
+          border: Border.all(color: Color(0xffe46b10),width: 1),
           color: colour,
           borderRadius: BorderRadius.circular(10.0),
         ),
@@ -98,8 +99,8 @@ class RoundIconButton extends StatelessWidget {
       child: Icon(icon),
       onPressed: onPressed,
       constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
+        width: 45.0,
+        height: 45.0,
       ),
       shape: CircleBorder(),
       fillColor: Colors.grey.withAlpha(50),
