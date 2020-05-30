@@ -13,13 +13,8 @@ class Auth with ChangeNotifier {
   DateTime _expiryTime;
   Timer _authTimer;
 
-  bool get isAuth {
-    return token != null;
-  }
-
-  String get userId {
-    return _userId;
-  }
+  bool get isAuth => token != null;
+  String get userId => _userId;
 
   String get token {
     if (_expiryTime != null &&
@@ -67,7 +62,7 @@ class Auth with ChangeNotifier {
     }
   }
 
-  Future<bool> tryAutoLohIn() async {
+  Future<bool> tryAutoLogIn() async {
     final prefs = await SharedPreferences.getInstance();
     if (!prefs.containsKey('userData')) {
       return false;
@@ -86,7 +81,7 @@ class Auth with ChangeNotifier {
     return true;
   }
 
-  Future<void> signup(String email, String password) async {
+  Future<void> signup(String email, String password, String userName) async {
     return authenticate(email, password, 'signUp');
   }
 
@@ -112,10 +107,6 @@ class Auth with ChangeNotifier {
       _authTimer.cancel();
     }
     final timeToExpiry = _expiryTime.difference(DateTime.now()).inSeconds;
-    _authTimer = Timer(
-        Duration(
-          seconds: timeToExpiry,
-        ),
-        logOut);
+    _authTimer = Timer(Duration(seconds: timeToExpiry), logOut);
   }
 }

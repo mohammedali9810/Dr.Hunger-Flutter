@@ -14,11 +14,24 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
-  bool isLogin;
+  bool _isLogin;
+  AnimationController _controller;
+  Animation<double> _scaleAnimation;
   @override
   void initState() {
     super.initState();
-    isLogin = widget.isLogin;
+    _isLogin = widget.isLogin;
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 4),
+    );
+    _scaleAnimation = Tween<double>(begin: 1, end: 2.35).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.elasticInOut,
+      ),
+    );
+    _controller.repeat(reverse: true);
   }
 
   @override
@@ -32,7 +45,10 @@ class _LoginPageState extends State<LoginPage>
               Positioned(
                 top: -MediaQuery.of(context).size.height * .15,
                 right: -MediaQuery.of(context).size.width * .4,
-                child: BezierContainer(),
+                child: ScaleTransition(
+                  scale: _scaleAnimation,
+                  child: BezierContainer(),
+                ),
               ),
               Positioned(top: 40, left: 0, child: backButton(context)),
               Container(
@@ -47,7 +63,7 @@ class _LoginPageState extends State<LoginPage>
                     scale: animation,
                     child: child,
                   ),
-                  child: isLogin
+                  child: _isLogin
                       ? _loginBuilder(context)
                       : _signupBuilder(context),
                 ),
@@ -65,8 +81,8 @@ class _LoginPageState extends State<LoginPage>
                     child: child,
                   ),
                   child: switchModeLabel(
-                    () => setState(() => isLogin = !isLogin),
-                    isLogin,
+                    () => setState(() => _isLogin = !_isLogin),
+                    _isLogin,
                   ),
                 ),
               ),
@@ -88,13 +104,13 @@ class _LoginPageState extends State<LoginPage>
         SizedBox(
           height: 30,
         ),
-        emailPasswordWidget(isLogin),
+        emailPasswordWidget(_isLogin),
         SizedBox(
           height: 15,
         ),
         submitButton(
           context,
-          isLogin,
+          _isLogin,
         ),
         Container(
           padding: EdgeInsets.symmetric(vertical: 10),
@@ -125,13 +141,13 @@ class _LoginPageState extends State<LoginPage>
         SizedBox(
           height: 50,
         ),
-        emailPasswordWidget(isLogin),
+        emailPasswordWidget(_isLogin),
         SizedBox(
           height: 15,
         ),
         submitButton(
           context,
-          isLogin,
+          _isLogin,
         ),
       ],
     );

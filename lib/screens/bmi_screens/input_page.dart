@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 
+import '../../constants.dart';
 import '../../models/bmi_models/calculator_brain.dart';
 import '../../widgets/bmi_components.dart';
-import '../../constants.dart';
 import 'results_page.dart';
 
 enum Gender {
@@ -25,18 +26,25 @@ class _InputPageState extends State<InputPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      backgroundColor: Color(0xFF213A50),
-      appBar: AppBar(
+      appBar: GradientAppBar(
+        gradient: LinearGradient(
+          colors: [
+            Color(0xffeaa448),
+            Color(0xffe46b10),
+            Color(0xffdd4400),
+          ],
+        ),
         title: Text(
           // ' Few 🧐 to 💪 ',
           'How is your physique?',
           style: TextStyle(color: Colors.white),
         ),
-//        backgroundColor: Color(0xFF213A50),
         elevation: 0.5,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: Flex(
+        direction: Axis.vertical,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Expanded(
             child: Row(

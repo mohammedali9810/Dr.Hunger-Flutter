@@ -183,14 +183,43 @@ class MealDetailScreen extends StatelessWidget {
                           height: 1.4,
                           fontFamily: 'Anton',
                         ),
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                    ],
-                  ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Text(
+                          'SHOW INGREDIENTS',
+                          style: TextStyle(
+                            color: Color(0xffe46b10),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(right: 30, top: 12, left: 10),
+                      child: Container(
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              'Put all ingredients in one blender and give it 10 minutes before serving.',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                height: 1.4,
+                                fontFamily: 'Anton',
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
