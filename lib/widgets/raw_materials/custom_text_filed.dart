@@ -8,13 +8,16 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: 'Amount',
-        fillColor: Colors.white70,
-        filled: true,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 4),
+      child: TextField(
+          decoration: InputDecoration(
+            hintText: 'Amount',
+            fillColor: Colors.white70,
+            filled: true,
+          ),
+          onChanged: getValue,
       ),
-      onChanged: getValue,
     );
   }
 }
