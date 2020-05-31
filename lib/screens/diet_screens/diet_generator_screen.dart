@@ -1,3 +1,4 @@
+import 'package:DrHunger/screens/diet_screens/raw_materials.dart';
 import 'package:flutter/material.dart';
 
 import '../meal_screens/meal_overview.dart';
@@ -64,7 +65,7 @@ class _DietGeneratorScreenState extends State<DietGeneratorScreen> {
                       height: 10.0,
                     ),
                     Container(
-                      height: 400.0,
+                      height: 300.0,
                       child: GridView(
                         physics: NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -244,10 +245,10 @@ class _DietGeneratorScreenState extends State<DietGeneratorScreen> {
                 ),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MealOverView()));
+                      MaterialPageRoute(builder: (context) => RawMaterials()));
                 },
                 child: Text(
-                  'Generate',
+                  'Continue',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
