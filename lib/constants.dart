@@ -39,10 +39,4 @@ const kBodyTextStyle = TextStyle(
   fontSize: 22.0,
 );
 
-const kListOfVegetables = [
-  'Meat','Potatos','Chicks','Rice','Tomatoes','Pepper'
-];
 
-const kListOfFruits = [
-  'Apple','Orange','Peache','Apricot'
-];
