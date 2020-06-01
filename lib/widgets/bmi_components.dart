@@ -10,11 +10,10 @@ class BottomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
           gradient: LinearGradient(
             colors: [
               Color(0xffeaa448),
@@ -26,7 +25,7 @@ class BottomButton extends StatelessWidget {
         child: Center(
           child: Text(
             buttonTitle,
-            style: kLargeButtonTextStyle,
+            style: kLargeButtonTextStyle.apply(color: Colors.white),
           ),
         ),
         width: double.infinity,
@@ -64,7 +63,11 @@ class IconContent extends StatelessWidget {
 }
 
 class ReusableCard extends StatelessWidget {
-  ReusableCard({@required this.colour, this.cardChild, this.onPress, this.transparentBorder = false});
+  ReusableCard(
+      {@required this.colour,
+      this.cardChild,
+      this.onPress,
+      this.transparentBorder = false});
 
   final Color colour;
   final Widget cardChild;

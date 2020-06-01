@@ -8,34 +8,6 @@ String email;
 String password;
 String name;
 
-Widget backButton(BuildContext context) {
-  return InkWell(
-    onTap: () {
-      Navigator.pop(context);
-    },
-    child: Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
-        child: Row(
-          children: <Widget>[
-            Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            ),
-            Text(
-              "Back",
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
-
 Widget title(BuildContext context) {
   return RichText(
     text: TextSpan(

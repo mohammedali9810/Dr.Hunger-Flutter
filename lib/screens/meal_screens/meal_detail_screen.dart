@@ -46,26 +46,40 @@ class MealDetailScreen extends StatelessWidget {
                         Positioned(
                           top: 30,
                           left: 10,
-                          child: GestureDetector(
-                            onTap: () => Navigator.of(context).pop(),
-                            child: Container(
-                              width: 35,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.white70,
-                              ),
-                              child: Icon(
-                                Icons.keyboard_backspace,
-                                color: Colors.green,
-                              ),
-                            ),
+                          child: BackButton(
+                            color: Colors.white,
+                            onPressed: () => Navigator.of(context).pop(),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 12,
+                    Container(
+                      color: Colors.black.withOpacity(0.7),
+                      margin: EdgeInsets.only(bottom: 20),
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      child: PieChart(
+                        dataMap: <String, double>{
+                          'Carbs   ' + '44g': 44,
+                          'Fat   ' + '35g': 35,
+                          'Protein   ' + '29g': 29,
+                          'Fiber   ' + '14g': 14,
+                        },
+                        animationDuration: Duration(milliseconds: 1500),
+                        chartType: ChartType.ring,
+                        chartValueBackgroundColor: Colors.white70,
+                        colorList: <Color>[
+                          Color(0xffaa0000),
+                          Colors.orange,
+                          Colors.pink,
+                          Colors.amber,
+                        ],
+                        initialAngle: pi,
+                        legendPosition: LegendPosition.right,
+                        // legendStyle: TextStyle(color: Colors.white),
+                        legendStyle: Theme.of(context).textTheme.subtitle1.apply(color:Colors.white),
+                        chartValueStyle: Theme.of(context).textTheme.subtitle1.apply(color:Colors.white),
+                        // showChartValueLabel: true,
+                      ),
                     ),
                     Text(
                       description,
@@ -103,30 +117,6 @@ class MealDetailScreen extends StatelessWidget {
                           ),
                         ),
                       ],
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: PieChart(
-                        dataMap: <String, double>{
-                          'Carbs   ' + '44g': 44,
-                          'Fat   ' + '35g': 35,
-                          'Protein   ' + '29g': 29,
-                          'Fiber   ' + '14g': 14,
-                        },
-                        animationDuration: Duration(milliseconds: 1500),
-                        chartType: ChartType.ring,
-                        chartValueBackgroundColor: Colors.white70,
-                        colorList: <Color>[
-                          Colors.green,
-                          Colors.lightBlue,
-                          Colors.indigo,
-                          Colors.teal,
-                        ],
-                        initialAngle: pi,
-                        legendPosition: LegendPosition.right,
-                        legendStyle: TextStyle(color: Colors.white),
-                        showChartValueLabel: true,
-                      ),
                     ),
                     SizedBox(
                       height: 10,
@@ -169,9 +159,6 @@ class MealDetailScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // SizedBox(
-                    //   height: 50,
-                    // )
                   ],
                 ),
               ),

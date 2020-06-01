@@ -63,7 +63,7 @@ class ResultsPage extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'Your Result',
-                    style: kTitleTextStyle,
+                    style: kTitleTextStyle.apply(color: Colors.white),
                   ),
                 ),
               ),
@@ -82,7 +82,8 @@ class ResultsPage extends StatelessWidget {
                         color: Colors.black45,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 7),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 7),
                       child: Text(
                         resultText.toUpperCase(),
                         style: kResultTextStyle.apply(
@@ -97,14 +98,14 @@ class ResultsPage extends StatelessWidget {
                     Text(
                       interpretation,
                       textAlign: TextAlign.center,
-                      style: kBodyTextStyle,
+                      style: kBodyTextStyle.apply(color: Colors.white),
                     ),
                   ],
                 ),
               ),
             ),
             BottomButton(
-              buttonTitle: 'get Started 🙌',
+              buttonTitle: 'Get Started 🙌',
               onTap: () {
                 Navigator.push(
                     context,

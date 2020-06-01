@@ -94,9 +94,12 @@ class _InputPageState extends State<InputPage> {
                 cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                      'HEIGHT',
-                      style: kLabelTextStyle,
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      child: Text(
+                        'Height',
+                        style: kLabelTextStyle,
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -149,12 +152,15 @@ class _InputPageState extends State<InputPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'WEIGHT',
+                            'Weight',
                             style: kLabelTextStyle,
                           ),
-                          Text(
-                            weight.toString(),
-                            style: kNumberTextStyle,
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 15),
+                            child: Text(
+                              weight.toString(),
+                              style: kNumberTextStyle,
+                            ),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -164,7 +170,7 @@ class _InputPageState extends State<InputPage> {
                                 onPressed: () => setState(() => weight--),
                               ),
                               SizedBox(
-                                width: 10.0,
+                                width: 20.0,
                               ),
                               RoundIconButton(
                                 icon: FontAwesomeIcons.plus,
@@ -183,12 +189,15 @@ class _InputPageState extends State<InputPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'AGE',
+                            'Age',
                             style: kLabelTextStyle,
                           ),
-                          Text(
-                            age.toString(),
-                            style: kNumberTextStyle,
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 15),
+                            child: Text(
+                              age.toString(),
+                              style: kNumberTextStyle,
+                            ),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -198,7 +207,7 @@ class _InputPageState extends State<InputPage> {
                                 onPressed: () => setState(() => age--),
                               ),
                               SizedBox(
-                                width: 10.0,
+                                width: 20.0,
                               ),
                               RoundIconButton(
                                 icon: FontAwesomeIcons.plus,

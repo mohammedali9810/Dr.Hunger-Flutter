@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../providers/meals_provider.dart';
-import '../../screens/user_screens/user_profile.dart';
+import '../user_screens/user_profile.dart';
 import 'meal_detail_screen.dart';
 
 class MealOverView extends StatefulWidget {
@@ -86,32 +86,32 @@ class _MealOverViewState extends State<MealOverView> {
               SizedBox(
                 height: 15,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Icon(
-                    Icons.perm_identity,
-                    size: 40,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => UserProfile(),
-                        ),
-                      );
-                    },
-                    child: Text(
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => UserProfile(),
+                    ),
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Icon(
+                      Icons.perm_identity,
+                      size: 40,
+                    ),
+                    Text(
                       'Profile',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 22,
                           fontFamily: 'Anton'),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

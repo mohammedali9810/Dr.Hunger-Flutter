@@ -17,6 +17,7 @@ class _LoginPageState extends State<LoginPage>
   bool _isLogin;
   AnimationController _controller;
   Animation<double> _scaleAnimation;
+
   @override
   void initState() {
     super.initState();
@@ -35,6 +36,12 @@ class _LoginPageState extends State<LoginPage>
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
@@ -50,7 +57,11 @@ class _LoginPageState extends State<LoginPage>
                   child: BezierContainer(),
                 ),
               ),
-              Positioned(top: 40, left: 0, child: backButton(context)),
+              Positioned(
+                top: 40,
+                left: 0,
+                child: BackButton(onPressed: () => Navigator.of(context).pop()),
+              ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: AnimatedSwitcher(
