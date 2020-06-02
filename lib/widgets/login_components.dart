@@ -1,8 +1,6 @@
+import 'package:DrHunger/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-
-import '../providers/auth.dart';
 import '../screens/bmi_screens/input_page.dart';
 
 String email;
@@ -74,14 +72,13 @@ Widget entryField(
 
 Widget submitButton(BuildContext context, bool isLogin) {
   Future<void> saveLogData() async {
-    final auth = Provider.of<Auth>(
-      context,
-      listen: false,
-    );
+
+    FireAuth  auth = FireAuth();
+
     if (isLogin)
-      await auth.signin(email, password);
+      await auth.logIn(email, password);
     else
-      await auth.signup(email, password, name);
+      await auth.signUp(email, password);
   }
 
   return InkWell(
