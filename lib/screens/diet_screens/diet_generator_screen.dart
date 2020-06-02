@@ -87,7 +87,7 @@ class _DietGeneratorScreenState extends State<DietGeneratorScreen> {
                         ),
                         FoodTypeCard(
                           image: 'assets/images/bruschetta.png',
-                          title: 'Meditarranean',
+                          title: 'Mediterranean',
                           isSelected: _isMedSelected,
                           onPress: () => setState(
                               () => _isMedSelected = !_isMedSelected),

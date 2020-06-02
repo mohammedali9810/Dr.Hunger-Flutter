@@ -25,11 +25,11 @@ class BottomButton extends StatelessWidget {
         child: Center(
           child: Text(
             buttonTitle,
-            style: kLargeButtonTextStyle.apply(color: Colors.white),
+            style: kLargeButtonTextStyle,
           ),
         ),
         width: double.infinity,
-        height: kBottomContainerHeight,
+        height: 60,
       ),
     );
   }

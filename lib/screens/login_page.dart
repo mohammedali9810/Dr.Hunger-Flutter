@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/bezierContainer.dart';
 import '../widgets/login_components.dart';
@@ -37,8 +38,8 @@ class _LoginPageState extends State<LoginPage>
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -47,57 +48,64 @@ class _LoginPageState extends State<LoginPage>
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
-          child: Stack(
-            children: <Widget>[
-              Positioned(
-                top: -MediaQuery.of(context).size.height * .15,
-                right: -MediaQuery.of(context).size.width * .4,
-                child: ScaleTransition(
-                  scale: _scaleAnimation,
-                  child: BezierContainer(),
-                ),
-              ),
-              Positioned(
-                top: 40,
-                left: 0,
-                child: BackButton(onPressed: () => Navigator.of(context).pop()),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 30),
-                child: AnimatedSwitcher(
-                  duration: const Duration(
-                    milliseconds: 500,
-                  ),
-                  transitionBuilder:
-                      (Widget child, Animation<double> animation) =>
-                          ScaleTransition(
-                    scale: animation,
-                    child: child,
-                  ),
-                  child: _isLogin
-                      ? _loginBuilder(context)
-                      : _signupBuilder(context),
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: AnimatedSwitcher(
-                  duration: const Duration(
-                    milliseconds: 500,
-                  ),
-                  transitionBuilder:
-                      (Widget child, Animation<double> animation) =>
-                          ScaleTransition(
-                    scale: animation,
-                    child: child,
-                  ),
-                  child: switchModeLabel(
-                    () => setState(() => _isLogin = !_isLogin),
-                    _isLogin,
+          child: DefaultTextStyle(
+            style: GoogleFonts.quicksand(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+            child: Stack(
+              children: <Widget>[
+                Positioned(
+                  top: -MediaQuery.of(context).size.height * .15,
+                  right: -MediaQuery.of(context).size.width * .4,
+                  child: ScaleTransition(
+                    scale: _scaleAnimation,
+                    child: BezierContainer(),
                   ),
                 ),
-              ),
-            ],
+                Positioned(
+                  top: 40,
+                  left: 0,
+                  child:
+                      BackButton(onPressed: () => Navigator.of(context).pop()),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: AnimatedSwitcher(
+                    duration: const Duration(
+                      milliseconds: 500,
+                    ),
+                    transitionBuilder:
+                        (Widget child, Animation<double> animation) =>
+                            ScaleTransition(
+                      scale: animation,
+                      child: child,
+                    ),
+                    child: _isLogin
+                        ? _loginBuilder(context)
+                        : _signupBuilder(context),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: AnimatedSwitcher(
+                    duration: const Duration(
+                      milliseconds: 500,
+                    ),
+                    transitionBuilder:
+                        (Widget child, Animation<double> animation) =>
+                            ScaleTransition(
+                      scale: animation,
+                      child: child,
+                    ),
+                    child: switchModeLabel(
+                      () => setState(() => _isLogin = !_isLogin),
+                      _isLogin,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

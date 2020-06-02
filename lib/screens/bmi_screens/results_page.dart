@@ -28,7 +28,6 @@ class ResultsPage extends StatelessWidget {
             Color(0xffdd4400),
           ],
         ),
-        iconTheme: IconThemeData(color: Colors.black),
         automaticallyImplyLeading: false,
         title: FlatButton(
           onPressed: () => Navigator.pop(context),
@@ -40,7 +39,7 @@ class ResultsPage extends StatelessWidget {
             ),
           ),
         ),
-        elevation: 0.2,
+        elevation: 0,
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -63,7 +62,7 @@ class ResultsPage extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'Your Result',
-                    style: kTitleTextStyle.apply(color: Colors.white),
+                    style: kTitleTextStyle,
                   ),
                 ),
               ),
@@ -79,7 +78,7 @@ class ResultsPage extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.black45,
+                        color: Colors.black54,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       padding:
@@ -93,12 +92,12 @@ class ResultsPage extends StatelessWidget {
                     ),
                     Text(
                       bmiResult,
-                      style: kBMITextStyle.apply(color: Colors.white),
+                      style: kBMITextStyle,
                     ),
                     Text(
                       interpretation,
                       textAlign: TextAlign.center,
-                      style: kBodyTextStyle.apply(color: Colors.white),
+                      style: kBodyTextStyle,
                     ),
                   ],
                 ),
@@ -106,13 +105,13 @@ class ResultsPage extends StatelessWidget {
             ),
             BottomButton(
               buttonTitle: 'Get Started 🙌',
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DietGeneratorScreen()));
-              },
-            )
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DietGeneratorScreen(),
+                ),
+              ),
+            ),
           ],
         ),
       ),

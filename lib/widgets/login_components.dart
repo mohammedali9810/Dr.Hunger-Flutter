@@ -1,8 +1,9 @@
-import 'package:DrHunger/providers/auth.dart';
-import 'package:DrHunger/screens/bmi_screens/input_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
+import '../providers/auth.dart';
+import '../screens/bmi_screens/input_page.dart';
 
 String email;
 String password;
@@ -16,7 +17,7 @@ Widget title(BuildContext context) {
         textStyle: Theme.of(context).textTheme.headline4,
         fontSize: 30,
         color: Color(0xffe46b10),
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.bold,
       ),
       children: <TextSpan>[
         TextSpan(
@@ -25,7 +26,7 @@ Widget title(BuildContext context) {
             textStyle: Theme.of(context).textTheme.headline4,
             fontSize: 30,
             color: Colors.black,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ],
@@ -50,7 +51,6 @@ Widget entryField(
           title,
           style: TextStyle(
             fontSize: 15,
-            fontWeight: FontWeight.bold,
           ),
         ),
         Opacity(
@@ -107,17 +107,19 @@ Widget submitButton(BuildContext context, bool isLogin) {
           ),
         ],
         gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
           colors: <Color>[
-            Color(0xfffbb448),
-            Color(0xfff7892b),
+            Color(0xffeaa448),
+            Color(0xffe46b10),
+            Color(0xffdd4400),
           ],
         ),
       ),
       child: Text(
         isLogin ? 'Login' : 'Register Now',
-        style: TextStyle(fontSize: 20, color: Colors.white),
+        style: TextStyle(
+          fontSize: 20,
+          color: Colors.white,
+        ),
       ),
     ),
   );
@@ -202,7 +204,6 @@ Widget facebookButton() {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 25,
-                fontWeight: FontWeight.w400,
               ),
             ),
           ),
@@ -223,7 +224,6 @@ Widget facebookButton() {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
-                fontWeight: FontWeight.w400,
               ),
             ),
           ),
@@ -260,7 +260,6 @@ Widget gmailButton() {
               style: TextStyle(
                 color: Colors.red,
                 fontSize: 25,
-                fontWeight: FontWeight.w400,
               ),
             ),
           ),
@@ -281,7 +280,6 @@ Widget gmailButton() {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
-                fontWeight: FontWeight.w400,
               ),
             ),
           ),
@@ -303,7 +301,6 @@ Widget switchModeLabel(Function callback, bool isLogin) {
           isLogin ? 'Don\'t have an account?' : 'Already have an account?',
           style: TextStyle(
             fontSize: 13,
-            fontWeight: FontWeight.w600,
           ),
         ),
         SizedBox(
@@ -316,7 +313,6 @@ Widget switchModeLabel(Function callback, bool isLogin) {
             style: TextStyle(
               color: Color(0xfff79c4f),
               fontSize: 13,
-              fontWeight: FontWeight.w600,
             ),
           ),
         ),

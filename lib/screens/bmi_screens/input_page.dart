@@ -22,6 +22,8 @@ class _InputPageState extends State<InputPage> {
   int height = 180;
   int weight = 60;
   int age = 20;
+  final kActiveCardColour = Colors.white38;
+  final kInactiveCardColour = Colors.black54;
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +36,7 @@ class _InputPageState extends State<InputPage> {
             Color(0xffdd4400),
           ],
         ),
-        title: Text(
-          // ' Few 🧐 to 💪 ',
-          'How is your physique?',
-          style: TextStyle(color: Colors.white),
-        ),
-        elevation: 0.5,
+        title: Text('How is your physique?'),
       ),
       body: Container(
         decoration: BoxDecoration(

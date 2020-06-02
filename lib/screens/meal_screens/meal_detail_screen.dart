@@ -66,7 +66,7 @@ class MealDetailScreen extends StatelessWidget {
                         },
                         animationDuration: Duration(milliseconds: 1500),
                         chartType: ChartType.ring,
-                        chartValueBackgroundColor: Colors.white70,
+                        chartValueStyle: Theme.of(context).textTheme.subtitle1,
                         colorList: <Color>[
                           Color(0xffaa0000),
                           Colors.orange,
@@ -75,10 +75,7 @@ class MealDetailScreen extends StatelessWidget {
                         ],
                         initialAngle: pi,
                         legendPosition: LegendPosition.right,
-                        // legendStyle: TextStyle(color: Colors.white),
-                        legendStyle: Theme.of(context).textTheme.subtitle1.apply(color:Colors.white),
-                        chartValueStyle: Theme.of(context).textTheme.subtitle1.apply(color:Colors.white),
-                        // showChartValueLabel: true,
+                        legendStyle: Theme.of(context).textTheme.subtitle1,
                       ),
                     ),
                     Text(
@@ -86,7 +83,6 @@ class MealDetailScreen extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
-                        // fontWeight: FontWeight.bold,
                         fontFamily: 'Pacifico',
                       ),
                     ),
@@ -152,7 +148,6 @@ class MealDetailScreen extends StatelessWidget {
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 height: 1.4,
-                                fontFamily: 'Anton',
                               ),
                             ),
                           ],

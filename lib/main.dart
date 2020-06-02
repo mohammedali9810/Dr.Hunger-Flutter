@@ -26,9 +26,15 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
             primaryColor: Color(0xffe46b10),
-            textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
-              bodyText1: GoogleFonts.montserrat(
-                textStyle: textTheme.bodyText1,
+            textTheme: GoogleFonts.quicksandTextTheme(textTheme).copyWith(
+              subtitle1: GoogleFonts.quicksand(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            appBarTheme: AppBarTheme(
+              textTheme: GoogleFonts.quicksandTextTheme(textTheme).apply(
+                bodyColor: Colors.white,
               ),
             ),
           ),

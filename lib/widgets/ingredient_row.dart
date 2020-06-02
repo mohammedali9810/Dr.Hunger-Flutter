@@ -24,6 +24,7 @@ class _IngredientRowState extends State<IngredientRow> {
     'Apricot',
   ];
   String selectedItem;
+  FocusNode _node = new FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -37,25 +38,21 @@ class _IngredientRowState extends State<IngredientRow> {
         children: <Widget>[
           Expanded(
             child: DropdownButton<String>(
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1
-                  .apply(color: Colors.white),
               isExpanded: true,
               dropdownColor: Colors.grey[900],
               underline: SizedBox.shrink(),
               value: selectedItem,
               onChanged: (value) {
                 setState(() => selectedItem = value);
-                Focus(
-                  child: SizedBox(),
-                );
+                FocusScope.of(context).requestFocus(_node);
               },
               items: (isFruit ? _fruits : _vegetables)
                   .map(
                     (String value) => DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value),
+                      child: Text(
+                        value,
+                      ),
                     ),
                   )
                   .toList(),
@@ -64,18 +61,12 @@ class _IngredientRowState extends State<IngredientRow> {
           SizedBox(width: 30),
           Expanded(
             child: TextField(
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1
-                  .apply(color: Colors.white),
+              focusNode: _node,
               keyboardType: TextInputType.number,
               textAlign: TextAlign.center,
               decoration: InputDecoration(
                 hintText: 'Amount',
-                hintStyle: Theme.of(context)
-                    .textTheme
-                    .subtitle1
-                    .apply(color: Colors.white38),
+                hintStyle: TextStyle(color: Colors.white30),
                 contentPadding: EdgeInsets.symmetric(horizontal: 10),
               ),
               onChanged: (value) {},
