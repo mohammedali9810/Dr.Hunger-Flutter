@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
@@ -105,12 +107,18 @@ class ResultsPage extends StatelessWidget {
             ),
             BottomButton(
               buttonTitle: 'Get Started 🙌',
-              onTap: () => Navigator.push(
+              onTap: () async {
+                var currentUser = await  FirebaseAuth.instance.currentUser();
+                await Firestore.instance.collection('Users').document(currentUser.uid).setData({
+                  'bmiResult' : bmiResult
+                },merge: true);
+                Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => DietGeneratorScreen(),
                 ),
-              ),
+              );
+              }
             ),
           ],
         ),

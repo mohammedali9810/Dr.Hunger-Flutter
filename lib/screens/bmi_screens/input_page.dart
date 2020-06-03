@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../constants.dart';
 import '../../models/bmi_models/calculator_brain.dart';
@@ -221,9 +223,16 @@ class _InputPageState extends State<InputPage> {
             ),
             BottomButton(
               buttonTitle: 'CALCULATE',
-              onTap: () {
+              onTap: () async {
                 CalculatorBrain calc =
                     CalculatorBrain(height: height, weight: weight);
+                var currentUser = await  FirebaseAuth.instance.currentUser();
+                await Firestore.instance.collection('Users').document(currentUser.uid).setData({
+                  'gender' : selectedGender.toString(),
+                  'height': height,
+                  'weight':weight,
+                  'age' :age
+                });
                 Navigator.push(
                   context,
                   MaterialPageRoute(
