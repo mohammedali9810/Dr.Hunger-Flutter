@@ -1,7 +1,9 @@
 import 'package:DrHunger/services/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../screens/bmi_screens/input_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 String email;
 String password;
@@ -77,8 +79,18 @@ Widget submitButton(BuildContext context, bool isLogin) {
 
     if (isLogin)
       await auth.logIn(email, password);
-    else
-      await auth.signUp(email, password);
+    else{
+      await auth.signUp(email, password,name);
+      var currentUser = await  FirebaseAuth.instance.currentUser();
+      await Firestore.instance.collection('Users_Info').document(currentUser.uid).setData({
+        'name' :  name,
+        'email' : email,
+        'password' : password
+      });
+
+    }
+
+
   }
 
   return InkWell(
