@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter ',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.amber,
           primaryColor: Color(0xffe46b10),
           textTheme: GoogleFonts.quicksandTextTheme(textTheme).copyWith(
             subtitle1: GoogleFonts.quicksand(
@@ -33,7 +33,18 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: SplashScreen(),
+        home: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xffeaa448),
+                Color(0xffe46b10),
+                Color(0xffdd4400),
+              ],
+            ),
+          ),
+          child: SplashScreen(),
+        ),
       ),
     );
   }

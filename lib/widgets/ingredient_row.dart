@@ -54,8 +54,10 @@ class _IngredientRowState extends State<IngredientRow> {
                   .map(
                     (String value) => DropdownMenuItem<String>(
                       value: value,
-                      child: Text(
-                        value,
+                      child: Center(
+                        child: Text(
+                          value
+                        ),
                       ),
                     ),
                   )
