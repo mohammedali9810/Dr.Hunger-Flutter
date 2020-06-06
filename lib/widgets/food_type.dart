@@ -14,8 +14,8 @@ class FoodTypeCard extends StatelessWidget {
       onTap: onPress,
       child: Container(
         decoration: BoxDecoration(
-          color: isSelected ? Color(0xFF83D6C1) : Colors.grey[200],
-          borderRadius: BorderRadius.circular(4.0),
+          color: isSelected ? Colors.amber : Colors.black45,
+          borderRadius: BorderRadius.circular(7),
         ),
         child: Stack(
           children: <Widget>[
@@ -24,8 +24,8 @@ class FoodTypeCard extends StatelessWidget {
               top: 10.0,
               child: isSelected
                   ? Icon(
-                      Icons.check_circle_outline,
-                      color: Colors.black.withOpacity(0.2),
+                      Icons.check_circle,
+                      color: Colors.black54,
                     )
                   : SizedBox.shrink(),
             ),
@@ -41,8 +41,7 @@ class FoodTypeCard extends StatelessWidget {
                   Text(
                     title,
                     style: TextStyle(
-                      color:
-                          isSelected ? Colors.blueGrey[800] : Colors.grey[500],
+                      color: isSelected ? Colors.black : Colors.white60,
                       fontSize: 17.0,
                       fontWeight: FontWeight.bold,
                     ),

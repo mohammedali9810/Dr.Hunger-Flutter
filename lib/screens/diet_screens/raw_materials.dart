@@ -52,7 +52,7 @@ class _RawMaterialsState extends State<RawMaterials> {
                         'VEGETABLES',
                         style: TextStyle(
                           fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.bold,                          
                         ),
                       ),
                     ),
@@ -101,54 +101,9 @@ class _RawMaterialsState extends State<RawMaterials> {
                   MaterialPageRoute(builder: (context) => MealOverView())),
               buttonTitle: 'Generate',
             ),
-            // Align(
-            //   alignment: Alignment.bottomCenter,
-            //   child: InkWell(
-            //     onTap: () => Navigator.push(context,
-            //         MaterialPageRoute(builder: (context) => MealOverView())),
-            //     child: Container(
-            //       padding: EdgeInsets.symmetric(horizontal: 155.0, vertical: 15),
-            //       color: Color(0xfff7892b),
-            //       child: Text(
-            //         'Generate',
-            //         style: TextStyle(
-            //           color: Colors.white,
-            //           fontWeight: FontWeight.bold,
-            //           fontSize: 19,
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),
-      // bottomNavigationBar: BottomAppBar(
-      //   color: Color(0xfff7892b),
-      //   elevation: 0.0,
-      //   child: Padding(
-      //     padding: EdgeInsets.only(right: 30.0, left: 30.0, bottom: 6),
-      //     child: FlatButton(
-      //       padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 15),
-      //       color: Color(0xfff7892b),
-      //       shape: RoundedRectangleBorder(
-      //         borderRadius: BorderRadius.circular(8.0),
-      //       ),
-      //       onPressed: () {
-      //         Navigator.push(context,
-      //             MaterialPageRoute(builder: (context) => MealOverView()));
-      //       },
-      //       child: Text(
-      //         'Generate',
-      //         style: TextStyle(
-      //           color: Colors.white,
-      //           fontWeight: FontWeight.bold,
-      //           fontSize: 19,
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

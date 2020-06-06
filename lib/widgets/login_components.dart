@@ -1,6 +1,7 @@
-import 'package:DrHunger/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../services/auth.dart';
 import '../screens/bmi_screens/input_page.dart';
 
 String email;
@@ -37,11 +38,10 @@ Widget entryField(
     String hintText,
     Icon icon,
     bool isPassword = false,
+    bool isEmail = false,
     @required Function saveValue}) {
   return Container(
-    margin: EdgeInsets.symmetric(
-      vertical: 3,
-    ),
+    margin: EdgeInsets.symmetric(vertical: 3),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -55,7 +55,12 @@ Widget entryField(
           opacity: 0.75,
           child: TextField(
             onChanged: saveValue,
+            keyboardType:
+                isEmail ? TextInputType.emailAddress : TextInputType.text,
             obscureText: isPassword,
+            style: TextStyle(
+              color: Colors.black,
+            ),
             decoration: InputDecoration(
               hintText: hintText,
               border: InputBorder.none,
@@ -72,9 +77,7 @@ Widget entryField(
 
 Widget submitButton(BuildContext context, bool isLogin) {
   Future<void> saveLogData() async {
-
-    FireAuth  auth = FireAuth();
-
+    FireAuth auth = FireAuth();
     if (isLogin)
       await auth.logIn(email, password);
     else
@@ -92,9 +95,7 @@ Widget submitButton(BuildContext context, bool isLogin) {
       padding: EdgeInsets.symmetric(vertical: 15),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(5),
-        ),
+        borderRadius: BorderRadius.circular(7),
         boxShadow: <BoxShadow>[
           BoxShadow(
             color: Colors.grey.shade200,
@@ -134,6 +135,7 @@ Widget emailPasswordWidget(bool isLogin) {
         ),
       entryField(
           title: "Email",
+          isEmail: true,
           hintText: "Please enter your E-mail",
           icon: Icon(Icons.email),
           saveValue: (value) => email = value),
@@ -178,11 +180,6 @@ Widget facebookButton() {
   return Container(
     height: 50,
     margin: EdgeInsets.symmetric(vertical: 5),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.all(
-        Radius.circular(10),
-      ),
-    ),
     child: Row(
       children: <Widget>[
         Expanded(
@@ -191,8 +188,8 @@ Widget facebookButton() {
             decoration: BoxDecoration(
               color: Color(0xff1959a9),
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(5),
-                topLeft: Radius.circular(5),
+                bottomLeft: Radius.circular(7),
+                topLeft: Radius.circular(7),
               ),
             ),
             alignment: Alignment.center,
@@ -211,8 +208,8 @@ Widget facebookButton() {
             decoration: BoxDecoration(
               color: Color(0xff2872ba),
               borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(5),
-                topRight: Radius.circular(5),
+                bottomRight: Radius.circular(7),
+                topRight: Radius.circular(7),
               ),
             ),
             alignment: Alignment.center,
@@ -233,12 +230,7 @@ Widget facebookButton() {
 Widget gmailButton() {
   return Container(
     height: 50,
-    margin: EdgeInsets.symmetric(vertical: 5),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.all(
-        Radius.circular(10),
-      ),
-    ),
+    margin: EdgeInsets.symmetric(vertical: 5),    
     child: Row(
       children: <Widget>[
         Expanded(
@@ -247,8 +239,8 @@ Widget gmailButton() {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(5),
-                topLeft: Radius.circular(5),
+                bottomLeft: Radius.circular(7),
+                topLeft: Radius.circular(7),
               ),
             ),
             alignment: Alignment.center,
