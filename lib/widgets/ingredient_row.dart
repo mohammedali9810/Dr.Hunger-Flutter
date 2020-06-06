@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 
 class IngredientRow extends StatefulWidget {
-  IngredientRow({this.isFruit = false});
+  IngredientRow(
+      {this.isFruit = false,
+      @required this.selectDataFun,
+      @required this.selectedItem,
+      @required this.numberFun,});
+
   final bool isFruit;
+  final Function selectDataFun;
+  final String selectedItem;
+  final Function numberFun;
 
   @override
   _IngredientRowState createState() => _IngredientRowState();
@@ -23,7 +31,6 @@ class _IngredientRowState extends State<IngredientRow> {
     'Peach',
     'Apricot',
   ];
-  String selectedItem;
   FocusNode _node = new FocusNode();
 
   @override
@@ -41,11 +48,8 @@ class _IngredientRowState extends State<IngredientRow> {
               isExpanded: true,
               dropdownColor: Colors.grey[900],
               underline: SizedBox.shrink(),
-              value: selectedItem,
-              onChanged: (value) {
-                setState(() => selectedItem = value);
-                FocusScope.of(context).requestFocus(_node);
-              },
+              value: widget.selectedItem,
+              onChanged: widget.selectDataFun,
               items: (isFruit ? _fruits : _vegetables)
                   .map(
                     (String value) => DropdownMenuItem<String>(
@@ -71,7 +75,7 @@ class _IngredientRowState extends State<IngredientRow> {
                 hintStyle: TextStyle(color: Colors.white30),
                 contentPadding: EdgeInsets.symmetric(horizontal: 10),
               ),
-              onChanged: (value) {},
+              onChanged:widget.numberFun,
             ),
           ),
         ],
