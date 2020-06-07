@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'providers/ingredients_provider.dart';
 import 'providers/meals_provider.dart';
 import 'screens/splash_screen.dart';
 
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(value: Meals()),
+        ChangeNotifierProvider(create: (context) => Meals()),
+        ChangeNotifierProvider(create: (context) => Ingredients()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

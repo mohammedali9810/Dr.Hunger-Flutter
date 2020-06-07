@@ -1,46 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/ingredients_provider.dart';
 
 class IngredientRow extends StatefulWidget {
-  IngredientRow(
-      {this.isFruit = false,
-      @required this.selectDataFun,
-      @required this.selectedItem,
-      @required this.numberFun,});
-
+  IngredientRow({this.isFruit = false});
   final bool isFruit;
-  final Function selectDataFun;
-  final String selectedItem;
-  final Function numberFun;
 
   @override
   _IngredientRowState createState() => _IngredientRowState();
 }
 
 class _IngredientRowState extends State<IngredientRow> {
-  final List<String> _vegetables = [
-    'Meat',
-    'Potatoes',
-    'Chickens',
-    'Rice',
-    'Tomatoes',
-    'Pepper',
-  ];
-  final List<String> _fruits = [
-    'Apple',
-    'Orange',
-    'Peach',
-    'Apricot',
-  ];
-  FocusNode _node = new FocusNode();
-
+  String _selectedItem, _oldItem;
+  double _numberValue;
+  FocusNode _node = FocusNode();
   @override
   Widget build(BuildContext context) {
+    Ingredients ingredients = Provider.of<Ingredients>(context);
     bool isFruit = widget.isFruit;
+    Map<String, bool> items =
+        isFruit ? ingredients.fruits : ingredients.vegetables;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 30,
-        vertical: 5,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 5),
       child: Row(
         children: <Widget>[
           Expanded(
@@ -48,25 +31,43 @@ class _IngredientRowState extends State<IngredientRow> {
               isExpanded: true,
               dropdownColor: Colors.grey[900],
               underline: SizedBox.shrink(),
-              value: widget.selectedItem,
-              onChanged: widget.selectDataFun,
-              items: (isFruit ? _fruits : _vegetables)
-                  .map(
-                    (String value) => DropdownMenuItem<String>(
-                      value: value,
-                      child: Center(
-                        child: Text(
-                          value
-                        ),
-                      ),
+              value: _selectedItem,
+              onChanged: (value) {
+                if (items[value]) {
+                  Scaffold.of(context).hideCurrentSnackBar();
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                    content: Text(
+                      'You can\'t choose an item more than once!',
+                      style: Theme.of(context).textTheme.subtitle1,
+                      textAlign: TextAlign.center,
                     ),
-                  )
+                  ));
+                } else {
+                  _oldItem = _selectedItem;
+                  _selectedItem = value;
+                  ingredients.toggleItem(_selectedItem, isFruit);
+                  if (_oldItem != null) {
+                    ingredients.toggleItem(_oldItem, isFruit);
+                    ingredients.removeFromMap(_oldItem);
+                  }
+                  ingredients.addToMap(_selectedItem, _numberValue);
+                  FocusScope.of(context).requestFocus(_node);
+                }
+              },
+              items: items.keys
+                  .map((value) => DropdownMenuItem<String>(
+                        value: value,
+                        child: Center(
+                          child: Text(value),
+                        ),
+                      ))
                   .toList(),
             ),
           ),
           SizedBox(width: 30),
           Expanded(
             child: TextField(
+              enabled: _selectedItem != null,
               focusNode: _node,
               keyboardType: TextInputType.number,
               textAlign: TextAlign.center,
@@ -75,7 +76,10 @@ class _IngredientRowState extends State<IngredientRow> {
                 hintStyle: TextStyle(color: Colors.white30),
                 contentPadding: EdgeInsets.symmetric(horizontal: 10),
               ),
-              onChanged:widget.numberFun,
+              onChanged: (value) {
+                _numberValue = double.tryParse(value);
+                ingredients.updateMap(_selectedItem, _numberValue);
+              },
             ),
           ),
         ],

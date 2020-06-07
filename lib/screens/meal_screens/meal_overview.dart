@@ -1,5 +1,4 @@
 import 'package:auto_animated/auto_animated.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +36,7 @@ class _MealOverViewState extends State<MealOverView> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               SizedBox(
-                height: 30,
+                height: 100,
               ),
               Icon(
                 Icons.fastfood,
@@ -164,8 +163,8 @@ class _MealOverViewState extends State<MealOverView> {
                   begin: Offset(0, -0.1),
                   end: Offset.zero,
                 ).animate(animation),
-                child: ChangeNotifierProvider.value(
-                  value: meals[index],
+                child: ChangeNotifierProvider(
+                  create: (context) => meals[index],
                   child: GestureDetector(
                     onTap: () => Navigator.push(
                       context,

@@ -1,11 +1,10 @@
-import 'package:DrHunger/services/auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../services/auth.dart';
 import '../screens/bmi_screens/input_page.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import '../services/auth.dart';
 
 String email;
 String password;
@@ -83,18 +82,18 @@ Widget submitButton(BuildContext context, bool isLogin) {
     FireAuth auth = FireAuth();
     if (isLogin)
       await auth.logIn(email, password);
-    else{
-      await auth.signUp(email, password,name);
-      var currentUser = await  FirebaseAuth.instance.currentUser();
-      await Firestore.instance.collection('Users_Info').document(currentUser.uid).setData({
-        'name' :  name,
-        'email' : email,
-        'password' : password
+    else {
+      await auth.signUp(email, password, name);
+      var currentUser = await FirebaseAuth.instance.currentUser();
+      await Firestore.instance
+          .collection('Users_Info')
+          .document(currentUser.uid)
+          .setData({
+        'name': name,
+        'email': email,
+        'password': password,
       });
-
     }
-
-
   }
 
   return InkWell(
@@ -243,7 +242,7 @@ Widget facebookButton() {
 Widget gmailButton() {
   return Container(
     height: 50,
-    margin: EdgeInsets.symmetric(vertical: 5),    
+    margin: EdgeInsets.symmetric(vertical: 5),
     child: Row(
       children: <Widget>[
         Expanded(
