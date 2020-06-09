@@ -1,3 +1,4 @@
+import 'package:auto_animated/auto_animated.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class RawMaterials extends StatefulWidget {
 class _RawMaterialsState extends State<RawMaterials> {
   int _vegCount = 3, _fruitCount = 3;
   Ingredients ingredients;
+  bool animate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -71,11 +73,7 @@ class _RawMaterialsState extends State<RawMaterials> {
                         thickness: 2,
                       ),
                     ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: _vegCount,
-                      itemBuilder: (context, index) => IngredientRow(),
-                    ),
+                    _inputList(false),
                     _addButton(false),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -95,12 +93,7 @@ class _RawMaterialsState extends State<RawMaterials> {
                         thickness: 2,
                       ),
                     ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: _fruitCount,
-                      itemBuilder: (context, index) =>
-                          IngredientRow(isFruit: true),
-                    ),
+                    _inputList(true),
                     _addButton(true),
                   ],
                 ),
@@ -116,13 +109,33 @@ class _RawMaterialsState extends State<RawMaterials> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MealOverView(),
+                    builder: (context) => MealOverview(),
                   ),
                 );
               },
               buttonTitle: 'Generate',
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _inputList(bool isFruit) {
+    return LiveList(
+      shrinkWrap: true,
+      itemCount: isFruit ? _fruitCount : _vegCount,
+      itemBuilder: (context, index, animation) => FadeTransition(
+        opacity: Tween<double>(begin: 0, end: 1).animate(animation),
+        child: SlideTransition(
+          position: Tween<Offset>(
+            begin: Offset(0, -0.1),
+            end: Offset.zero,
+          ).animate(animation),
+          child: IngredientRow(
+            isFruit: isFruit,
+            animate: animate,
+          ),
         ),
       ),
     );
@@ -139,6 +152,7 @@ class _RawMaterialsState extends State<RawMaterials> {
         color: Colors.amber,
         padding: EdgeInsets.symmetric(horizontal: 70, vertical: 10),
         onPressed: () => setState(() {
+          animate = true;
           if (isFruit && ingredients.fruits.length > _fruitCount) _fruitCount++;
           if (!isFruit && ingredients.vegetables.length > _vegCount)
             _vegCount++;

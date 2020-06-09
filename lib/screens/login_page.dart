@@ -21,7 +21,6 @@ class _LoginPageState extends State<LoginPage>
 
   @override
   void initState() {
-    super.initState();
     _isLogin = widget.isLogin;
     _controller = AnimationController(
       vsync: this,
@@ -34,6 +33,7 @@ class _LoginPageState extends State<LoginPage>
       ),
     );
     _controller.repeat(reverse: true);
+    super.initState();
   }
 
   @override

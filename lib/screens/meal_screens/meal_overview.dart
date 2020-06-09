@@ -8,12 +8,12 @@ import '../../providers/meals_provider.dart';
 import '../user_screens/user_profile.dart';
 import 'meal_detail_screen.dart';
 
-class MealOverView extends StatefulWidget {
+class MealOverview extends StatefulWidget {
   @override
-  _MealOverViewState createState() => _MealOverViewState();
+  _MealOverviewState createState() => _MealOverviewState();
 }
 
-class _MealOverViewState extends State<MealOverView> {
+class _MealOverviewState extends State<MealOverview> {
   bool isSingleView = false;
 
   @override
@@ -125,10 +125,8 @@ class _MealOverViewState extends State<MealOverView> {
           ],
         ),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              isSingleView ? Icons.view_module : Icons.view_day,
-            ),
+          LiveIconButton(
+            icon: AnimatedIcons.list_view,
             onPressed: () => setState(() => isSingleView = !isSingleView),
           ),
         ],
@@ -154,79 +152,72 @@ class _MealOverViewState extends State<MealOverView> {
             padding: EdgeInsets.all(10),
             itemCount: meals.length,
             itemBuilder: (context, index, animation) => FadeTransition(
-              opacity: Tween<double>(
-                begin: 0,
-                end: 1,
-              ).animate(animation),
+              opacity: Tween<double>(begin: 0, end: 1).animate(animation),
               child: SlideTransition(
                 position: Tween<Offset>(
                   begin: Offset(0, -0.1),
                   end: Offset.zero,
                 ).animate(animation),
-                child: ChangeNotifierProvider(
-                  create: (context) => meals[index],
-                  child: GestureDetector(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MealDetailScreen(
-                          imageUrl: meals[index].imageUrl,
-                          description: meals[index].description,
-                          title: meals[index].name,
-                        ),
+                child: GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MealDetailScreen(
+                        imageUrl: meals[index].imageUrl,
+                        description: meals[index].description,
+                        title: meals[index].name,
                       ),
                     ),
-                    child: Stack(
-                      children: <Widget>[
-                        ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          // todo: wrap in a Hero widget
-                          child: Image.asset(
-                            meals[index].imageUrl,
-                            fit: BoxFit.cover,
-                          ),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        // todo: wrap in a Hero widget
+                        child: Image.asset(
+                          meals[index].imageUrl,
+                          fit: BoxFit.cover,
                         ),
-                        LayoutBuilder(
-                          builder: (context, constraints) => constraints
-                                      .maxWidth >
-                                  MediaQuery.of(context).size.width / 2
-                              ? Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: Container(
-                                    margin: EdgeInsets.only(bottom: 30),
-                                    height: 80,
-                                    width: 250,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white70,
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Text(
-                                          'BREAKFAST',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        Text(
-                                          'Enjoy With Your Time',
-                                          style: TextStyle(
-                                            fontFamily: 'Pacifico',
-                                            color: Colors.grey.shade800,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                      ),
+                      LayoutBuilder(
+                        builder: (context, constraints) => constraints
+                                    .maxWidth >
+                                MediaQuery.of(context).size.width / 2
+                            ? Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Container(
+                                  margin: EdgeInsets.only(bottom: 30),
+                                  height: 80,
+                                  width: 250,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.white70,
                                   ),
-                                )
-                              : Container(),
-                        ),
-                      ],
-                    ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(
+                                        'BREAKFAST',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        'Enjoy With Your Time',
+                                        style: TextStyle(
+                                          fontFamily: 'Pacifico',
+                                          color: Colors.grey.shade800,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            : SizedBox.shrink(),
+                      ),
+                    ],
                   ),
                 ),
               ),
