@@ -34,6 +34,7 @@ class _IngredientRowState extends State<IngredientRow> {
     Map<String, bool> items =
         isFruit ? ingredients.fruits : ingredients.vegetables;
     return AnimatedContainer(
+      padding: EdgeInsets.symmetric(horizontal: 40),
       duration: Duration(milliseconds: 500),
       height: animate ? startAnimation ? 65 : 0 : 65,
       child: Row(
@@ -48,9 +49,13 @@ class _IngredientRowState extends State<IngredientRow> {
                 if (items[value]) {
                   Scaffold.of(context).hideCurrentSnackBar();
                   Scaffold.of(context).showSnackBar(SnackBar(
+                    backgroundColor: Colors.amber,
                     content: Text(
                       'You can\'t choose an item more than once!',
-                      style: Theme.of(context).textTheme.subtitle1,
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle1
+                          .copyWith(color: Colors.black),
                       textAlign: TextAlign.center,
                     ),
                   ));

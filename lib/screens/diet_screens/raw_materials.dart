@@ -32,10 +32,7 @@ class _RawMaterialsState extends State<RawMaterials> {
             Color(0xffdd4400),
           ],
         ),
-        title: Text(
-          'What\'s in your kitchen?',
-          style: TextStyle(fontSize: 20),
-        ),
+        title: Text('What\'s in your kitchen?'),
       ),
       body: DecoratedBox(
         decoration: BoxDecoration(
@@ -47,58 +44,48 @@ class _RawMaterialsState extends State<RawMaterials> {
             ],
           ),
         ),
-        child: Flex(
-          direction: Axis.vertical,
+        child: ListView(
           children: <Widget>[
-            Expanded(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 50),
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'VEGETABLES',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
-                      child: Divider(
-                        color: Colors.black,
-                        height: 4,
-                        thickness: 2,
-                      ),
-                    ),
-                    _inputList(false),
-                    _addButton(false),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'FRUITS',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
-                      child: Divider(
-                        color: Colors.black,
-                        height: 4,
-                        thickness: 2,
-                      ),
-                    ),
-                    _inputList(true),
-                    _addButton(true),
-                  ],
+            Center(
+              heightFactor: 2,
+              child: Text(
+                'VEGETABLES',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 100),
+              child: Divider(
+                color: Colors.black,
+                height: 4,
+                thickness: 2,
+              ),
+            ),
+            _inputList(false),
+            _addButton(false),
+            Center(
+              heightFactor: 2,
+              child: Text(
+                'FRUITS',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 100),
+              child: Divider(
+                color: Colors.black,
+                height: 4,
+                thickness: 2,
+              ),
+            ),
+            _inputList(true),
+            _addButton(true),
             BottomButton(
               onTap: () async {
                 var currentUser = await FirebaseAuth.instance.currentUser();
@@ -124,6 +111,7 @@ class _RawMaterialsState extends State<RawMaterials> {
   Widget _inputList(bool isFruit) {
     return LiveList(
       shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
       itemCount: isFruit ? _fruitCount : _vegCount,
       itemBuilder: (context, index, animation) => FadeTransition(
         opacity: Tween<double>(begin: 0, end: 1).animate(animation),
@@ -142,9 +130,10 @@ class _RawMaterialsState extends State<RawMaterials> {
   }
 
   Widget _addButton(bool isFruit) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
+    return Center(
+      heightFactor: 2,
       child: RaisedButton(
+        elevation: 5,
         shape: ContinuousRectangleBorder(
           borderRadius: BorderRadius.circular(50),
         ),
