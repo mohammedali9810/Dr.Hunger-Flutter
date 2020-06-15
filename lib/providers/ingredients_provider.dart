@@ -1,30 +1,46 @@
 import 'package:flutter/material.dart';
 
 class Ingredients with ChangeNotifier {
-  Map<String, bool> _vegetables = {
-    'Meat': false,
-    'Potatoes': false,
-    'Chickens': false,
-    'Rice': false,
-    'Tomatoes': false,
-    'Pepper': false,
-  };
-  Map<String, bool> _fruits = {
-    'Apple': false,
-    'Orange': false,
-    'Peach': false,
-    'Apricot': false,
-    'Mango' : false,
-    'Strawberry' : false,
-  };
+  Ingredients() {
+    _init();
+  }
+  final List<String> _vegetables = [
+    'Meat',
+    'Potatoes',
+    'Chickens',
+    'Rice',
+    'Tomatoes',
+    'Pepper',
+  ];
+  final List<String> _fruits = [
+    'Apple',
+    'Orange',
+    'Peach',
+    'Apricot',
+    'Mango',
+    'Strawberry',
+  ];
+  Map<String, bool> _vegetablesMap, _fruitsMap;
+  Map<String, bool> get vegetables => {..._vegetablesMap};
+  Map<String, bool> get fruits => {..._fruitsMap};
   Map<String, double> _ingredients = {};
-  
-  Map<String, bool> get vegetables => {..._vegetables};
-  Map<String, bool> get fruits => {..._fruits};
   Map<String, double> get ingredients => {..._ingredients};
 
+  void _init() {
+    _vegetablesMap = Map<String, bool>.fromIterable(
+      _vegetables,
+      key: (element) => element,
+      value: (_) => false,
+    );
+    _fruitsMap = Map<String, bool>.fromIterable(
+      _fruits,
+      key: (element) => element,
+      value: (_) => false,
+    );
+  }
+
   void toggleItem(String item, bool isFruit) {
-    (isFruit ? _fruits : _vegetables).update(item, (value) => !value);
+    (isFruit ? _fruitsMap : _vegetablesMap).update(item, (value) => !value);
     notifyListeners();
   }
 
