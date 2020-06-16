@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'login_page.dart';
+import 'welcome_screen.dart';
 // import 'dart:async';
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 3)).then((value) => Navigator.push(
-        context, MaterialPageRoute(builder: (context) => LoginPage())));
+        context, MaterialPageRoute(builder: (context) => WelcomePage())));
   }
 
   @override

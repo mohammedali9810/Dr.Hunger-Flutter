@@ -226,12 +226,15 @@ class _InputPageState extends State<InputPage> {
               onTap: () async {
                 CalculatorBrain calc =
                     CalculatorBrain(height: height, weight: weight);
-                var currentUser = await  FirebaseAuth.instance.currentUser();
-                await Firestore.instance.collection('Users').document(currentUser.uid).setData({
-                  'gender' : selectedGender.toString(),
+                var currentUser = await FirebaseAuth.instance.currentUser();
+                await Firestore.instance
+                    .collection('Users')
+                    .document(currentUser.uid)
+                    .setData({
+                  'gender': selectedGender.toString(),
                   'height': height,
-                  'weight':weight,
-                  'age' :age
+                  'weight': weight,
+                  'age': age
                 });
                 Navigator.push(
                   context,

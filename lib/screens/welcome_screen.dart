@@ -36,7 +36,7 @@ class _WelcomePageState extends State<WelcomePage> {
               children: <Widget>[
                 _title(),
                 SizedBox(
-                  height: 7,
+                  height: 15,
                 ),
                 _extraTitle(),
                 SizedBox(
@@ -83,6 +83,7 @@ class _WelcomePageState extends State<WelcomePage> {
           style: TextStyle(
             fontSize: 20,
             color: Color(0xfff7892b),
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -113,6 +114,7 @@ class _WelcomePageState extends State<WelcomePage> {
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
