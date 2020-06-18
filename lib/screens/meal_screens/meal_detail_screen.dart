@@ -7,11 +7,13 @@ class MealDetailScreen extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String description;
+  final Map<String, double> ingredients;
 
   MealDetailScreen({
     @required this.imageUrl,
     @required this.description,
     @required this.title,
+    @required this.ingredients,
   });
 
   @override
@@ -118,7 +120,16 @@ class MealDetailScreen extends StatelessWidget {
                       height: 10,
                     ),
                     FlatButton(
-                      onPressed: () {},
+                      onPressed: () => showModalBottomSheet(
+                        context: context,
+                        builder: _buildBottomSheet,
+                        backgroundColor: Colors.deepOrange,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(30),
+                          ),
+                        ),
+                      ),
                       color: Colors.white,
                       shape: RoundedRectangleBorder(
                         side: BorderSide(
@@ -160,6 +171,32 @@ class MealDetailScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildBottomSheet(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(30),
+      ),
+      child: ListView.builder(
+        padding: EdgeInsets.symmetric(
+          vertical: 20,
+          horizontal: 40,
+        ),
+        shrinkWrap: true,
+        itemCount: ingredients.length,
+        itemBuilder: (context, index) => ListTile(
+          title: Text(ingredients.keys.toList()[index]),
+          trailing: Text(
+            ingredients.values.toList()[index].round().toString(),
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
     );
   }

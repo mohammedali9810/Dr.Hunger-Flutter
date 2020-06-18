@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../widgets/food_type.dart';
 import '../../widgets/bmi_components.dart';
-import '../diet_screens/raw_materials.dart';
+import '../diet_screens/raw_materials_screen.dart';
 
 class DietGeneratorScreen extends StatefulWidget {
   DietGeneratorScreen({Key key}) : super(key: key);

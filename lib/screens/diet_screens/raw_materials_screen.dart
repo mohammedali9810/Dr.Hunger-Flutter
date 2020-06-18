@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import '../../providers/ingredients_provider.dart';
 import '../../widgets/bmi_components.dart';
 import '../../widgets/ingredient_row.dart';
-import '../meal_screens/meal_overview.dart';
+import '../meal_screens/meal_overview_screen.dart';
 
 class RawMaterials extends StatefulWidget {
   @override
@@ -137,9 +137,9 @@ class _RawMaterialsState extends State<RawMaterials> {
         shape: ContinuousRectangleBorder(
           borderRadius: BorderRadius.circular(50),
         ),
-        child: Icon(Icons.add_circle_outline),
+        child: Icon(Icons.add),
         color: Colors.amber,
-        padding: EdgeInsets.symmetric(horizontal: 70, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
         onPressed: () => setState(() {
           animate = true;
           if (isFruit && ingredients.fruits.length > _fruitCount) _fruitCount++;

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/profile_sheet.dart';
+
 class UserProfile extends StatelessWidget {
   final endColor = Color(0xFFe46792);
   final startColor = Color(0xFFaa7ce4);
   final titleColor = Color(0xff444444);
   final textColor = Color(0xFFa9a9a9);
   final shadowColor = Color(0xffe9e9f4);
-
   final newColor = Color(0xfffbb448);
   final newColor2 = Color(0xffe46b10);
 
@@ -101,13 +102,6 @@ class UserProfile extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: shadowColor,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.white,
-                          //blurRadius: 1,
-                          spreadRadius: 3,
-                        ),
-                      ],
                     ),
                     child: Column(
                       children: <Widget>[
@@ -242,6 +236,35 @@ class UserProfile extends StatelessWidget {
                         ),
                       ],
                     ),
+                  ),
+                ),
+                FlatButton(
+                  onPressed: () => showModalBottomSheet(
+                    context: context,
+                    builder: (_) => ClipRRect(
+                      child: ProfileSheet(),
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(30),
+                      ),
+                    ),
+                    backgroundColor: Colors.deepOrange,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(30),
+                      ),
+                    ),
+                  ),
+                  color: Colors.amber,
+                  shape: ContinuousRectangleBorder(
+                    borderRadius: BorderRadius.circular(60),
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 25,
+                    vertical: 15,
+                  ),
+                  child: Text(
+                    'Show my Inventory',
+                    style: TextStyle(fontSize: 16),
                   ),
                 ),
               ],

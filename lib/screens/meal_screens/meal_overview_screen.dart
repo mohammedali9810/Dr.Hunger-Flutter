@@ -15,11 +15,22 @@ class MealOverview extends StatefulWidget {
 
 class _MealOverviewState extends State<MealOverview> {
   bool isSingleView = false;
+  final Map<String, double> ingredients = {
+    'Tomatoes': 300,
+    'Eggs': 130,
+    'Milk': 250,
+    'Cheese': 200,
+    'Meat': 500,
+    'Spaghetti': 700,
+    'Pepper': 10,
+    'Salt': 20,
+    'Butter': 100,
+    'Sesame': 50,
+  };
 
   @override
   Widget build(BuildContext context) {
     final meals = Provider.of<Meals>(context).meals;
-
     return Scaffold(
       drawer: Drawer(
         child: DecoratedBox(
@@ -105,9 +116,9 @@ class _MealOverviewState extends State<MealOverview> {
                     Text(
                       'Profile',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22,
-                          fontFamily: 'Anton'),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
+                      ),
                     ),
                   ],
                 ),
@@ -166,6 +177,7 @@ class _MealOverviewState extends State<MealOverview> {
                         imageUrl: meals[index].imageUrl,
                         description: meals[index].description,
                         title: meals[index].name,
+                        ingredients: ingredients,
                       ),
                     ),
                   ),

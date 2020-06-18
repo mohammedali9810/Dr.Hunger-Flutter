@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/ingredients_provider.dart';
@@ -14,7 +15,7 @@ class IngredientRow extends StatefulWidget {
 
 class _IngredientRowState extends State<IngredientRow> {
   String _selectedItem, _oldItem;
-  double _numberValue;
+  int _numberValue = 0;
   FocusNode _node = FocusNode();
   bool startAnimation = false;
 
@@ -41,6 +42,8 @@ class _IngredientRowState extends State<IngredientRow> {
         children: <Widget>[
           Expanded(
             child: DropdownButton<String>(
+              onTap: () => FocusScope.of(context).requestFocus(_node),
+              focusNode: _node,
               isExpanded: true,
               dropdownColor: Colors.grey[900],
               underline: SizedBox.shrink(),
@@ -62,13 +65,12 @@ class _IngredientRowState extends State<IngredientRow> {
                 } else {
                   _oldItem = _selectedItem;
                   _selectedItem = value;
-                  ingredients.toggleItem(_selectedItem, isFruit);
+                  ingredients.toggleItem(_selectedItem);
                   if (_oldItem != null) {
-                    ingredients.toggleItem(_oldItem, isFruit);
+                    ingredients.toggleItem(_oldItem);
                     ingredients.removeFromMap(_oldItem);
                   }
                   ingredients.addToMap(_selectedItem, _numberValue);
-                  FocusScope.of(context).requestFocus(_node);
                 }
               },
               items: items.keys
@@ -85,7 +87,9 @@ class _IngredientRowState extends State<IngredientRow> {
           Expanded(
             child: TextField(
               enabled: _selectedItem != null,
-              focusNode: _node,
+              inputFormatters: <TextInputFormatter>[
+                WhitelistingTextInputFormatter.digitsOnly,
+              ],
               keyboardType: TextInputType.number,
               textAlign: TextAlign.center,
               decoration: InputDecoration(
@@ -94,7 +98,7 @@ class _IngredientRowState extends State<IngredientRow> {
                 contentPadding: EdgeInsets.symmetric(horizontal: 10),
               ),
               onChanged: (value) {
-                _numberValue = double.tryParse(value);
+                _numberValue = int.tryParse(value);
                 ingredients.updateMap(_selectedItem, _numberValue);
               },
             ),
