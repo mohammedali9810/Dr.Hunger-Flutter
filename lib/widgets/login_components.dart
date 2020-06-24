@@ -55,20 +55,23 @@ Widget entryField(
         ),
         Opacity(
           opacity: 0.75,
-          child: TextField(
-            onChanged: saveValue,
-            keyboardType:
-                isEmail ? TextInputType.emailAddress : TextInputType.text,
-            obscureText: isPassword,
-            style: TextStyle(
-              color: Colors.black,
-            ),
-            decoration: InputDecoration(
-              hintText: hintText,
-              border: InputBorder.none,
-              icon: icon,
-              fillColor: Color(0xfff3f3f4),
-              filled: true,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: TextField(
+              onChanged: saveValue,
+              keyboardType:
+                  isEmail ? TextInputType.emailAddress : TextInputType.text,
+              obscureText: isPassword,
+              style: TextStyle(
+                color: Colors.black,
+              ),
+              decoration: InputDecoration(
+                hintText: hintText,
+                border: InputBorder.none,
+                icon: icon,
+                fillColor: Color(0xfff3f3f4),
+                filled: true,
+              ),
             ),
           ),
         )
@@ -107,7 +110,7 @@ Widget submitButton(BuildContext context, bool isLogin) {
       padding: EdgeInsets.symmetric(vertical: 15),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(15),
         boxShadow: <BoxShadow>[
           BoxShadow(
             color: Colors.grey.shade200,
@@ -192,49 +195,40 @@ Widget facebookButton() {
   return Container(
     height: 50,
     margin: EdgeInsets.symmetric(vertical: 5),
-    child: Row(
-      children: <Widget>[
-        Expanded(
-          flex: 1,
-          child: Container(
-            decoration: BoxDecoration(
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(15),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Container(
               color: Color(0xff1959a9),
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(7),
-                topLeft: Radius.circular(7),
-              ),
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              'f',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 25,
+              alignment: Alignment.center,
+              child: Text(
+                'f',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                ),
               ),
             ),
           ),
-        ),
-        Expanded(
-          flex: 5,
-          child: Container(
-            decoration: BoxDecoration(
+          Expanded(
+            flex: 5,
+            child: Container(
               color: Color(0xff2872ba),
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(7),
-                topRight: Radius.circular(7),
-              ),
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              'Login with Facebook',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
+              alignment: Alignment.center,
+              child: Text(
+                'Login with Facebook',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }
@@ -243,49 +237,47 @@ Widget gmailButton() {
   return Container(
     height: 50,
     margin: EdgeInsets.symmetric(vertical: 5),
-    child: Row(
-      children: <Widget>[
-        Expanded(
-          flex: 1,
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(7),
-                topLeft: Radius.circular(7),
-              ),
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              'G',
-              style: TextStyle(
-                color: Colors.red,
-                fontSize: 25,
-              ),
-            ),
-          ),
-        ),
-        Expanded(
-          flex: 5,
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(5),
-                topRight: Radius.circular(5),
-              ),
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              'Login with Gmail',
-              style: TextStyle(
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(15),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Container(
+              decoration: BoxDecoration(
                 color: Colors.white,
-                fontSize: 18,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(15),
+                  topLeft: Radius.circular(15),
+                ),
+                border: Border.all(color: Colors.red, width: 2),
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                'G',
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 25,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+          Expanded(
+            flex: 5,
+            child: Container(
+              color: Colors.red,
+              alignment: Alignment.center,
+              child: Text(
+                'Login with Gmail',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     ),
   );
 }
@@ -313,7 +305,7 @@ Widget switchModeLabel(Function callback, bool isLogin) {
             isLogin ? 'Register' : 'Login',
             style: TextStyle(
               color: Color(0xfff79c4f),
-              fontSize: 13,
+              fontSize: 15,
             ),
           ),
         ),

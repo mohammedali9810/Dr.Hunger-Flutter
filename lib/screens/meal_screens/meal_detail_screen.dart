@@ -8,12 +8,14 @@ class MealDetailScreen extends StatelessWidget {
   final String title;
   final String description;
   final Map<String, double> ingredients;
+  final int tag;
 
   MealDetailScreen({
     @required this.imageUrl,
     @required this.description,
     @required this.title,
     @required this.ingredients,
+    this.tag,
   });
 
   @override
@@ -40,10 +42,12 @@ class MealDetailScreen extends StatelessWidget {
                   children: <Widget>[
                     Stack(
                       children: <Widget>[
-                        // todo: wrap in a Hero widget
-                        Image.asset(
-                          imageUrl,
-                          fit: BoxFit.cover,
+                        Hero(
+                          tag: tag,
+                          child: Image.asset(
+                            imageUrl,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                         Positioned(
                           top: 30,

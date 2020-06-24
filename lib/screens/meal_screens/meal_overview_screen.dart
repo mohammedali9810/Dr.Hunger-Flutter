@@ -98,7 +98,6 @@ class _MealOverviewState extends State<MealOverview> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.pop(context);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -178,6 +177,7 @@ class _MealOverviewState extends State<MealOverview> {
                         description: meals[index].description,
                         title: meals[index].name,
                         ingredients: ingredients,
+                        tag: index,
                       ),
                     ),
                   ),
@@ -185,10 +185,12 @@ class _MealOverviewState extends State<MealOverview> {
                     children: <Widget>[
                       ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                        // todo: wrap in a Hero widget
-                        child: Image.asset(
-                          meals[index].imageUrl,
-                          fit: BoxFit.cover,
+                        child: Hero(
+                          tag: index,
+                          child: Image.asset(
+                            meals[index].imageUrl,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       LayoutBuilder(

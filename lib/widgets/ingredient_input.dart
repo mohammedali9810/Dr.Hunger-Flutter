@@ -4,40 +4,27 @@ import 'package:provider/provider.dart';
 
 import '../providers/ingredients_provider.dart';
 
-class IngredientRow extends StatefulWidget {
-  IngredientRow({this.isFruit = false, this.animate = false});
+class IngredientInput extends StatefulWidget {
+  IngredientInput({this.isFruit = false});
   final bool isFruit;
-  final bool animate;
 
   @override
-  _IngredientRowState createState() => _IngredientRowState();
+  _IngredientInputState createState() => _IngredientInputState();
 }
 
-class _IngredientRowState extends State<IngredientRow> {
+class _IngredientInputState extends State<IngredientInput> {
   String _selectedItem, _oldItem;
   int _numberValue = 0;
   FocusNode _node = FocusNode();
-  bool startAnimation = false;
-
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() => startAnimation = true);
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     Ingredients ingredients = Provider.of<Ingredients>(context);
     bool isFruit = widget.isFruit;
-    bool animate = widget.animate;
     Map<String, bool> items =
         isFruit ? ingredients.fruits : ingredients.vegetables;
-    return AnimatedContainer(
-      padding: EdgeInsets.symmetric(horizontal: 40),
-      duration: Duration(milliseconds: 500),
-      height: animate ? startAnimation ? 65 : 0 : 65,
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 8),
       child: Row(
         children: <Widget>[
           Expanded(

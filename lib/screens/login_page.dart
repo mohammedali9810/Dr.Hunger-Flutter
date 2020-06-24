@@ -75,11 +75,12 @@ class _LoginPageState extends State<LoginPage>
                     duration: const Duration(
                       milliseconds: 500,
                     ),
-                    transitionBuilder:
-                        (Widget child, Animation<double> animation) =>
-                            ScaleTransition(
-                      scale: animation,
-                      child: child,
+                    transitionBuilder: (child, animation) => FadeTransition(
+                      opacity: animation,
+                      child: ScaleTransition(
+                        scale: animation,
+                        child: child,
+                      ),
                     ),
                     child: _isLogin
                         ? _loginBuilder(context)
@@ -92,11 +93,12 @@ class _LoginPageState extends State<LoginPage>
                     duration: const Duration(
                       milliseconds: 500,
                     ),
-                    transitionBuilder:
-                        (Widget child, Animation<double> animation) =>
-                            ScaleTransition(
-                      scale: animation,
-                      child: child,
+                    transitionBuilder: (child, animation) => FadeTransition(
+                      opacity: animation,
+                      child: ScaleTransition(
+                        scale: animation,
+                        child: child,
+                      ),
                     ),
                     child: switchModeLabel(
                       () => setState(() => _isLogin = !_isLogin),

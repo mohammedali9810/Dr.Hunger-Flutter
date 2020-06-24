@@ -49,7 +49,7 @@ class Ingredients with ChangeNotifier {
       'Potatoes': 350,
       'Chickens': 474,
       'Rice': 530,
-      'Orange': 312,
+      'Orange': 443,
       'Apple': 273,
       'Strawberry': 180,
     };
