@@ -10,8 +10,7 @@ class ProfileSheet extends StatefulWidget {
   _ProfileSheetState createState() => _ProfileSheetState();
 }
 
-class _ProfileSheetState extends State<ProfileSheet>
-    with TickerProviderStateMixin {
+class _ProfileSheetState extends State<ProfileSheet> {
   Ingredients ingredient;
   Map<String, int> ingredients;
   TextStyle style = TextStyle();
