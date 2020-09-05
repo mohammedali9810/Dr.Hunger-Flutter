@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/bezierContainer.dart';
 import '../widgets/login_components.dart';
+import '../style.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title, this.isLogin = false}) : super(key: key);
@@ -26,7 +29,7 @@ class _LoginPageState extends State<LoginPage>
       vsync: this,
       duration: Duration(seconds: 4),
     );
-    _scaleAnimation = Tween<double>(begin: 1, end: 2.35).animate(
+    _scaleAnimation = Tween<double>(begin: 1, end: 1.75).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Curves.elasticInOut,
@@ -60,14 +63,26 @@ class _LoginPageState extends State<LoginPage>
                   right: -MediaQuery.of(context).size.width * .4,
                   child: ScaleTransition(
                     scale: _scaleAnimation,
-                    child: BezierContainer(),
+                    child: BezierContainer(primaryColor),
+                  ),
+                ),
+                Positioned(
+                  bottom: -MediaQuery.of(context).size.height * .15,
+                  left: -MediaQuery.of(context).size.width * .4,
+                  child: ScaleTransition(
+                    scale: _scaleAnimation,
+                    child: Transform.rotate(
+                      angle: pi,
+                      child: BezierContainer(secondaryColor),
+                    ),
                   ),
                 ),
                 Positioned(
                   top: 40,
                   left: 0,
-                  child:
-                      BackButton(onPressed: () => Navigator.of(context).pop()),
+                  child: BackButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 30),

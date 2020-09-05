@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 class BezierContainer extends StatelessWidget {
-  const BezierContainer({Key key}) : super(key: key);
+  const BezierContainer(this.color, {Key key}) : super(key: key);
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -16,17 +17,7 @@ class BezierContainer extends StatelessWidget {
           child: Container(
             height: MediaQuery.of(context).size.height * .5,
             width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color(0xffeaa448),
-                  Color(0xffe46b10),
-                  Color(0xffdd4400),
-                ],
-              ),
-            ),
+            color: color,
           ),
         ),
       ),

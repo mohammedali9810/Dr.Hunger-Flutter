@@ -6,11 +6,14 @@ import '../providers/ingredients_provider.dart';
 
 class IngredientTile extends StatefulWidget {
   IngredientTile({
+    @required this.item,
+    @required this.value,
     @required this.index,
     @required this.animation,
     @required this.listKey,
   });
-  final int index;
+  final String item;
+  final int value, index;
   final Animation<double> animation;
   final GlobalKey<AnimatedListState> listKey;
   @override
@@ -25,8 +28,8 @@ class _IngredientTileState extends State<IngredientTile> {
   @override
   Widget build(BuildContext context) {
     ingredient = Provider.of<Ingredients>(context);
-    item = ingredient.ingredients.keys.toList()[widget.index];
-    value = ingredient.ingredients[item];
+    item = widget.item;
+    value = widget.value;
     style = Theme.of(context).textTheme.subtitle1.copyWith(
           color: Colors.black,
           fontWeight: FontWeight.bold,
@@ -44,7 +47,7 @@ class _IngredientTileState extends State<IngredientTile> {
                   child: Text(item),
                 ),
                 // Text('$value'),
-                // SizedBox(width: 40),
+                // SizedBox(width: 20),
                 Expanded(
                   child: AnimatedSwitcher(
                     duration: Duration(milliseconds: 1000),
@@ -142,14 +145,20 @@ class _IngredientTileState extends State<IngredientTile> {
       actions: <Widget>[
         FlatButton(
           onPressed: () {
-            ingredient.toggleItem(item);
-            ingredient.removeFromMap(item);
             Navigator.of(context).pop();
             widget.listKey.currentState.removeItem(
               widget.index,
-              (context, animation) => _removedTile(animation),
+              (context, animation) => IngredientTile(
+                index: widget.index,
+                item: item,
+                value: value,
+                animation: animation,
+                listKey: widget.listKey,
+              ),
               duration: Duration(milliseconds: 500),
             );
+            ingredient.toggleItem(item);
+            ingredient.removeFromMap(item);
           },
           child: Text(
             'Remove',
@@ -158,49 +167,6 @@ class _IngredientTileState extends State<IngredientTile> {
         ),
         _cancelButton(),
       ],
-    );
-  }
-
-  Widget _removedTile(Animation<double> animation) {
-    return SizeTransition(
-      sizeFactor: animation,
-      child: FadeTransition(
-        opacity: animation,
-        child: ScaleTransition(
-          scale: animation,
-          child: ListTile(
-            title: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Text(item),
-                ),
-                Expanded(
-                  child: AnimatedSwitcher(
-                    duration: Duration.zero,
-                    transitionBuilder:
-                        AnimatedSwitcher.defaultTransitionBuilder,
-                    child: Text('$value'),
-                  ),
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.edit,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.delete,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
     );
   }
 

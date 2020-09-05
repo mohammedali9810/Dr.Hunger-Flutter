@@ -1,8 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../constants.dart';
 import '../../models/bmi_models/calculator_brain.dart';
@@ -30,14 +29,7 @@ class _InputPageState extends State<InputPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GradientAppBar(
-        gradient: LinearGradient(
-          colors: [
-            Color(0xffeaa448),
-            Color(0xffe46b10),
-            Color(0xffdd4400),
-          ],
-        ),
+      appBar: AppBar(
         title: Text('How is your physique?'),
       ),
       body: Container(

@@ -1,8 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/profile_sheet.dart';
 
-class UserProfile extends StatelessWidget {
+class UserProfile extends StatefulWidget {
+  @override
+  _UserProfileState createState() => _UserProfileState();
+}
+
+class _UserProfileState extends State<UserProfile> {
   final endColor = Color(0xFFe46792);
   final startColor = Color(0xFFaa7ce4);
   final titleColor = Color(0xff444444);
@@ -10,6 +17,35 @@ class UserProfile extends StatelessWidget {
   final shadowColor = Color(0xffe9e9f4);
   final newColor = Color(0xfffbb448);
   final newColor2 = Color(0xffe46b10);
+  String username, age, height, weight;
+
+  @override
+  void initState() {
+    _getUserData().catchError(() {
+      username = 'test user';
+      age = '25';
+      height = '175';
+      weight = '70';
+    });
+
+    super.initState();
+  }
+
+  Future<void> _getUserData() async {
+    FirebaseUser currentUser = await FirebaseAuth.instance.currentUser();
+    DocumentSnapshot userInfo = await Firestore.instance
+        .collection('Users_Info')
+        .document(currentUser.uid)
+        .get();
+    DocumentSnapshot user = await Firestore.instance
+        .collection('Users')
+        .document(currentUser.uid)
+        .get();
+    username = userInfo.data['name'].toString();
+    age = user.data['age'].toString();
+    height = user.data['height'].toString();
+    weight = user.data['weight'].toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +154,7 @@ class UserProfile extends StatelessWidget {
                           height: 10,
                         ),
                         Text(
-                          'MOHAMED ALI',
+                          username,
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -134,7 +170,7 @@ class UserProfile extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
                               Text(
-                                '22 Year',
+                                '$age Years',
                                 style: TextStyle(
                                   color: newColor2,
                                   fontSize: 16,
@@ -142,7 +178,7 @@ class UserProfile extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '175 Cm',
+                                '$height cm',
                                 style: TextStyle(
                                   color: newColor2,
                                   fontSize: 16,
@@ -150,7 +186,7 @@ class UserProfile extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '80 Kg',
+                                '$weight Kg',
                                 style: TextStyle(
                                   color: newColor2,
                                   fontSize: 16,

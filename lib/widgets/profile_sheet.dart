@@ -31,15 +31,15 @@ class _ProfileSheetState extends State<ProfileSheet> {
         if (index == ingredient.ingredients.length)
           return listKey.currentState.insertItem(
             index,
-            duration: Duration(seconds: 1),
+            duration: Duration(milliseconds: 1200),
           );
         final item = ingredient.ingredients.entries.toList()[index];
         ingredients.putIfAbsent(item.key, () => item.value);
         listKey.currentState.insertItem(
           index,
-          duration: Duration(seconds: 1),
+          duration: Duration(milliseconds: 1200),
         );
-        await Future.delayed(Duration(milliseconds: 250));
+        await Future.delayed(Duration(milliseconds: 300));
       }
     } on NoSuchMethodError {}
   }
@@ -62,13 +62,16 @@ class _ProfileSheetState extends State<ProfileSheet> {
       padding: EdgeInsets.only(top: 10, left: 20, right: 20),
       shrinkWrap: true,
       itemBuilder: (context, index, animation) {
-        return index == ingredients.length
-            ? _addButton(animation)
-            : IngredientTile(
-                animation: animation,
-                index: index,
-                listKey: listKey,
-              );
+        if (index == ingredients.length) return _addButton(animation);
+        String item = ingredients.keys.toList()[index];
+        int value = ingredients[item];
+        return IngredientTile(
+            animation: animation,
+            index: index,
+            item: item,
+            listKey: listKey,
+            value: value,
+        );
       },
     );
   }

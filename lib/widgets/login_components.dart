@@ -1,3 +1,4 @@
+import 'package:bordered_text/bordered_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -5,33 +6,62 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../screens/bmi_screens/input_page.dart';
 import '../services/auth.dart';
+import '../style.dart';
 
 String email;
-String password;
 String name;
+String password;
 
-Widget title(BuildContext context) {
-  return RichText(
-    text: TextSpan(
-      text: "Dr.",
-      style: GoogleFonts.portLligatSans(
-        textStyle: Theme.of(context).textTheme.headline4,
-        fontSize: 30,
-        color: Color(0xffe46b10),
-        fontWeight: FontWeight.bold,
-      ),
-      children: <TextSpan>[
-        TextSpan(
-          text: "Hunger",
-          style: GoogleFonts.portLligatSans(
-            textStyle: Theme.of(context).textTheme.headline4,
-            fontSize: 30,
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
+Widget divider() {
+  return Container(
+    margin: EdgeInsets.symmetric(vertical: 10),
+    child: Row(
+      children: <Widget>[
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(30, 0, 10, 0),
+            child: Divider(
+              thickness: 1,
+            ),
+          ),
+        ),
+        Text('or'),
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(10, 0, 30, 0),
+            child: Divider(
+              thickness: 1,
+            ),
           ),
         ),
       ],
     ),
+  );
+}
+
+Widget emailPasswordWidget(bool isLogin) {
+  return Column(
+    children: <Widget>[
+      if (!isLogin)
+        entryField(
+          title: "Username",
+          icon: Icon(Icons.person_outline),
+          hintText: "Please enter your name",
+          saveValue: (value) => name = value,
+        ),
+      entryField(
+          title: "Email",
+          isEmail: true,
+          hintText: "Please enter your E-mail",
+          icon: Icon(Icons.email),
+          saveValue: (value) => email = value),
+      entryField(
+          title: "Password",
+          isPassword: true,
+          hintText: "Please enter your password",
+          icon: Icon(Icons.security),
+          saveValue: (value) => password = value),
+    ],
   );
 }
 
@@ -75,117 +105,6 @@ Widget entryField(
             ),
           ),
         )
-      ],
-    ),
-  );
-}
-
-Widget submitButton(BuildContext context, bool isLogin) {
-  Future<void> saveLogData() async {
-    FireAuth auth = FireAuth();
-    if (isLogin)
-      await auth.logIn(email, password);
-    else {
-      await auth.signUp(email, password, name);
-      var currentUser = await FirebaseAuth.instance.currentUser();
-      await Firestore.instance
-          .collection('Users_Info')
-          .document(currentUser.uid)
-          .setData({
-        'name': name,
-        'email': email,
-        'password': password,
-      });
-    }
-  }
-
-  return InkWell(
-    onTap: () async {
-      await saveLogData();
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => InputPage()));
-    },
-    child: Container(
-      width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(vertical: 15),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.grey.shade200,
-            offset: Offset(2, 4),
-            spreadRadius: 2,
-            blurRadius: 5,
-          ),
-        ],
-        gradient: LinearGradient(
-          colors: <Color>[
-            Color(0xffeaa448),
-            Color(0xffe46b10),
-            Color(0xffdd4400),
-          ],
-        ),
-      ),
-      child: Text(
-        isLogin ? 'Login' : 'Register Now',
-        style: TextStyle(
-          fontSize: 20,
-          color: Colors.white,
-        ),
-      ),
-    ),
-  );
-}
-
-Widget emailPasswordWidget(bool isLogin) {
-  return Column(
-    children: <Widget>[
-      if (!isLogin)
-        entryField(
-          title: "Username",
-          icon: Icon(Icons.person_outline),
-          hintText: "Please enter your name",
-          saveValue: (value) => name = value,
-        ),
-      entryField(
-          title: "Email",
-          isEmail: true,
-          hintText: "Please enter your E-mail",
-          icon: Icon(Icons.email),
-          saveValue: (value) => email = value),
-      entryField(
-          title: "Password",
-          isPassword: true,
-          hintText: "Please enter your password",
-          icon: Icon(Icons.security),
-          saveValue: (value) => password = value),
-    ],
-  );
-}
-
-Widget divider() {
-  return Container(
-    margin: EdgeInsets.symmetric(vertical: 10),
-    child: Row(
-      children: <Widget>[
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(30, 0, 10, 0),
-            child: Divider(
-              thickness: 1,
-            ),
-          ),
-        ),
-        Text('or'),
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(10, 0, 30, 0),
-            child: Divider(
-              thickness: 1,
-            ),
-          ),
-        ),
       ],
     ),
   );
@@ -282,6 +201,61 @@ Widget gmailButton() {
   );
 }
 
+Widget submitButton(BuildContext context, bool isLogin) {
+  Future<void> saveLogData() async {
+    FireAuth auth = FireAuth();
+    if (isLogin)
+      await auth.logIn(email, password);
+    else {
+      await auth.signUp(email, password);
+      var currentUser = await FirebaseAuth.instance.currentUser();
+      await Firestore.instance
+          .collection('Users_Info')
+          .document(currentUser.uid)
+          .setData({
+        'name': name,
+        'email': email,
+        'password': password,
+      });
+    }
+  }
+
+  return InkWell(
+    onTap: () async {
+      await saveLogData();
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => InputPage()));
+    },
+    child: Container(
+      padding: EdgeInsets.symmetric(vertical: 15),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.grey[200],
+            spreadRadius: 1,
+            blurRadius: 3,
+          ),
+        ],
+        borderRadius: BorderRadius.circular(15),
+        gradient: LinearGradient(
+          colors: <Color>[
+            secondaryColor,
+            primaryColor,
+          ],
+        ),
+      ),
+      child: Text(
+        isLogin ? 'Login' : 'Register Now',
+        style: TextStyle(
+          fontSize: 20,
+          color: Colors.white,
+        ),
+      ),
+    ),
+  );
+}
+
 Widget switchModeLabel(Function callback, bool isLogin) {
   return Container(
     key: ValueKey(isLogin),
@@ -300,16 +274,50 @@ Widget switchModeLabel(Function callback, bool isLogin) {
           width: 5,
         ),
         InkWell(
-          onTap: () => callback(),
-          child: Text(
-            isLogin ? 'Register' : 'Login',
-            style: TextStyle(
-              color: Color(0xfff79c4f),
-              fontSize: 15,
+          onTap: callback,
+          child: BorderedText(
+            strokeColor: backgroundColor,
+            strokeWidth: 1.5,
+            child: Text(
+              isLogin ? 'Register' : 'Login',
+              style: TextStyle(
+                color: primaryColor,
+                fontSize: 15,
+              ),
             ),
           ),
         ),
       ],
     ),
+  );
+}
+
+Widget title(BuildContext context) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      Text(
+        'Dr. ',
+        style: GoogleFonts.portLligatSans(
+          textStyle: Theme.of(context).textTheme.headline4,
+          fontSize: 30,
+          color: primaryColor,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      BorderedText(
+        strokeColor: backgroundColor,
+        strokeWidth: 3,
+        child: Text(
+          'Hunger',
+          style: GoogleFonts.portLligatSans(
+            textStyle: Theme.of(context).textTheme.headline4,
+            fontSize: 30,
+            color: secondaryColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      )
+    ],
   );
 }

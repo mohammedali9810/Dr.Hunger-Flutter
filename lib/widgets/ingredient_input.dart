@@ -36,31 +36,17 @@ class _IngredientInputState extends State<IngredientInput> {
               underline: SizedBox.shrink(),
               value: _selectedItem,
               onChanged: (value) {
-                if (items[value]) {
-                  Scaffold.of(context).hideCurrentSnackBar();
-                  Scaffold.of(context).showSnackBar(SnackBar(
-                    backgroundColor: Colors.amber,
-                    content: Text(
-                      'You can\'t choose an item more than once!',
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle1
-                          .copyWith(color: Colors.black),
-                      textAlign: TextAlign.center,
-                    ),
-                  ));
-                } else {
-                  _oldItem = _selectedItem;
-                  _selectedItem = value;
-                  ingredients.toggleItem(_selectedItem);
-                  if (_oldItem != null) {
-                    ingredients.toggleItem(_oldItem);
-                    ingredients.removeFromMap(_oldItem);
-                  }
-                  ingredients.addToMap(_selectedItem, _numberValue);
+                _oldItem = _selectedItem;
+                _selectedItem = value;
+                ingredients.toggleItem(_selectedItem);
+                if (_oldItem != null) {
+                  ingredients.toggleItem(_oldItem);
+                  ingredients.removeFromMap(_oldItem);
                 }
+                ingredients.addToMap(_selectedItem, _numberValue);
               },
               items: items.keys
+                  .where((key) => !items[key] || key == _selectedItem)
                   .map((value) => DropdownMenuItem<String>(
                         value: value,
                         child: Center(
