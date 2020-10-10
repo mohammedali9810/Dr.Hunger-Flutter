@@ -1,2 +1,4 @@
-This repo is no longer active. Our team has new members and we will rebuild the application from scratch under a new name with a refreshed and more consistent design.
-We will add a link to the new repo once it is ready.
+Dr. Hunger is mobile(flutter) application that uses machine learning and convolutional neural networks to recommend meals to the users based on their preferences, medical status and fitness goals.
+It was built with the intention of helping people to answer the never-ending question "What are we going to eat today?". It should also help the users to design a meal plan that fits their fitness goals, whether it is for gaining or losing weight, or just maintaining a healthy shape. It should also give the users some hints about which meals they can make with the ingredients available in their kitchen.
+
+This is a beta version of the application with limited functionality due to some time and health constraints. We are rebuilding the application from scratch a refreshed design with the help of some new team members. We will add a link to the new repository once the application is fully functional and ready for release.
